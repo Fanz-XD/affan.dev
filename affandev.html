@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>affan.dev — Belajar bahasa Inggris tiap hari</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF1F7; --surface:#FFFFFF; --surface-2:#F6F8FC;
+  --ink:#1B2440; --muted:#5B6785; --line:#D8DFEC;
+  --mark:#FFD84D;
+  --accent:#2F5BEA; --accent-ink:#FFFFFF;
+  --good:#0E8F6F; --bad:#D6455B;
+  --shadow:0 20px 44px -26px rgba(27,36,64,.5);
+  --r:18px;
+  --sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Newsreader",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1426; --surface:#171F38; --surface-2:#1D2645;
+    --ink:#E9EDF9; --muted:#9CA8C8; --line:#2B3762; --mark:#E6B93F;
+    --accent:#8AA4FF; --accent-ink:#0E1426;
+    --good:#4CC79F; --bad:#F1798B;
+    --shadow:0 20px 44px -24px rgba(0,0,0,.75);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1426; --surface:#171F38; --surface-2:#1D2645;
+  --ink:#E9EDF9; --muted:#9CA8C8; --line:#2B3762; --mark:#E6B93F;
+  --accent:#8AA4FF; --accent-ink:#0E1426;
+  --good:#4CC79F; --bad:#F1798B;
+  --shadow:0 20px 44px -24px rgba(0,0,0,.75);
+}
+
+/* aksen per halaman (terang) */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="cocokkan"]{--accent:#B5459A;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="kalimat"]{--accent:#12876A;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="dengar"]{--accent:#7A45D6;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
+}
+body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
+body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
+body[data-page="cocokkan"]{--accent:#B5459A;--accent-ink:#FFFFFF}
+body[data-page="kalimat"]{--accent:#12876A;--accent-ink:#FFFFFF}
+body[data-page="dengar"]{--accent:#7A45D6;--accent-ink:#FFFFFF}
+body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
+/* aksen per halaman (gelap) */
+:root[data-theme="dark"] body[data-page="kosakata"],:root:not([data-theme="light"]) body[data-page="kosakata"]{--accent:#EAB149;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="kuis"],:root:not([data-theme="light"]) body[data-page="kuis"]{--accent:#8AA4FF;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="cocokkan"],:root:not([data-theme="light"]) body[data-page="cocokkan"]{--accent:#E793D2;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="kalimat"],:root:not([data-theme="light"]) body[data-page="kalimat"]{--accent:#4CC79F;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="dengar"],:root:not([data-theme="light"]) body[data-page="dengar"]{--accent:#B392FF;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="progres"],:root:not([data-theme="light"]) body[data-page="progres"]{--accent:#FF8FA6;--accent-ink:#0E1426}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  transition:background .4s ease;
+}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+aside{
+  border-right:1px solid var(--line);background:var(--surface);
+  padding:22px 18px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:8px;
+}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.02em;padding:6px 10px 18px;text-decoration:none;color:var(--ink);display:block}
+.logo b{color:var(--accent);transition:color .3s ease}
+.navlink{
+  display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;
+  color:var(--muted);text-decoration:none;font-size:15.5px;font-weight:600;
+  transition:background .18s ease,color .18s ease;
+}
+.navlink .dot{width:9px;height:9px;border-radius:99px;background:var(--line);transition:background .2s,transform .2s}
+.navlink:hover{background:var(--surface-2);color:var(--ink)}
+.navlink.active{background:var(--accent);color:var(--accent-ink)}
+.navlink.active .dot{background:var(--accent-ink);transform:scale(1.25)}
+.side-foot{margin-top:auto;display:flex;gap:8px;align-items:center}
+.mini{flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.mini span{display:block;font-size:12.5px;color:var(--muted)}
+.mini b{font-size:19px;letter-spacing:-.02em}
+.icon-btn{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;width:42px;height:42px;display:grid;place-items:center;font-size:16px;flex:none}
+.icon-btn.off{opacity:.45}
+
+main{padding:38px clamp(20px,4vw,52px) 96px;max-width:960px}
+.page{display:none}
+.page.on{display:block;animation:enter .42s cubic-bezier(.2,.75,.25,1)}
+@keyframes enter{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.eyebrow{color:var(--accent);font-weight:700;font-size:14px;margin:0 0 6px;transition:color .3s}
+h1{font-size:clamp(30px,4.4vw,44px);line-height:1.08;letter-spacing:-.035em;font-weight:800;margin:0 0 12px}
+.lede{font-family:var(--serif);font-size:18.5px;color:var(--muted);max-width:56ch;margin:0 0 30px}
+.mark{position:relative;white-space:nowrap}
+.mark::after{content:"";position:absolute;left:-.12em;right:-.12em;bottom:.05em;height:.45em;background:var(--mark);opacity:.6;z-index:-1;border-radius:.3em .5em .4em .35em;transform:rotate(-1.2deg)}
+.mark>span{position:relative;z-index:1}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.tiny{font-size:13px;color:var(--muted)}
+.ipa{font-family:var(--serif);font-style:italic;color:var(--muted)}
+.serif{font-family:var(--serif)}
+
+.btn{border-radius:13px;padding:12px 20px;font-weight:600;font-size:16px;background:var(--accent);color:var(--accent-ink);transition:transform .12s,filter .18s}
+.btn:hover{filter:brightness(1.07)}
+.btn:active{transform:translateY(1px) scale(.99)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn:disabled{opacity:.5;cursor:default}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:26px 0}
+.tile{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:block;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:transform .18s cubic-bezier(.2,.8,.2,1),box-shadow .18s}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.tile i{position:absolute;inset:0 auto 0 0;width:4px;background:var(--c)}
+.tile h3{margin:0 0 4px;font-size:20px;letter-spacing:-.02em}
+.tile p{margin:0;color:var(--muted);font-size:14.5px}
+.tile .bar{height:5px;border-radius:99px;background:var(--surface-2);margin-top:16px;overflow:hidden}
+.tile .bar u{display:block;height:100%;background:var(--c);width:0;transition:width .6s ease}
+@media(max-width:700px){.tiles{grid-template-columns:1fr}}
+
+.wod{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;position:relative;overflow:hidden}
+.wod::before{content:"";position:absolute;inset:0 auto 0 0;width:5px;background:var(--mark)}
+.wod h2{font-size:32px;margin:6px 0 2px;letter-spacing:-.02em}
+
+.deck{perspective:1500px;margin-bottom:18px;touch-action:pan-y}
+.flip{position:relative;height:270px;transform-style:preserve-3d;cursor:grab;transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.flip.drag{transition:none;cursor:grabbing}
+.flip.is-flipped{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);display:grid;place-content:center;text-align:center;padding:28px;box-shadow:var(--shadow)}
+.face.back{transform:rotateY(180deg);background:var(--surface-2)}
+.face h4{font-size:38px;margin:0 0 6px;letter-spacing:-.025em}
+.face .m{font-family:var(--serif);font-size:20px;margin:0 0 10px}
+.face .ex{font-family:var(--serif);font-size:16px;color:var(--muted);max-width:34ch}
+.known-flag{position:absolute;top:14px;right:16px;font-size:12.5px;color:var(--good);font-weight:700}
+.pips{display:flex;gap:5px;margin:16px 0 18px;flex-wrap:wrap}
+.pip{height:4px;flex:1;min-width:8px;border-radius:99px;background:var(--line)}
+.pip.done{background:var(--good)}
+.pip.now{background:var(--accent)}
+.mic-fb{margin-top:14px;font-family:var(--serif);font-size:16px;min-height:24px}
+.mic-fb.ok{color:var(--good)}
+.mic-fb.bad{color:var(--bad)}
+.listening{animation:pulseMic 1s ease-in-out infinite}
+@keyframes pulseMic{50%{transform:scale(1.06);filter:brightness(1.1)}}
+
+.progress{height:7px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin-bottom:8px}
+.progress u{display:block;height:100%;background:var(--accent);width:0;transition:width .4s ease}
+.qmeta{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-bottom:20px}
+.q{font-family:var(--serif);font-size:23px;margin:0 0 20px;line-height:1.4}
+.opts{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+@media(max-width:640px){.opts{grid-template-columns:1fr}}
+.opt{text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:14px 16px;font-size:16px;display:flex;gap:12px;align-items:center;transition:border-color .15s,background .15s,transform .12s}
+.opt:hover:not(:disabled){border-color:var(--accent);transform:translateX(3px)}
+.opt .k{width:24px;height:24px;border-radius:7px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-size:12.5px;color:var(--muted);flex:none}
+.opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--surface))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--surface));animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.feedback{margin-top:18px;font-family:var(--serif);font-size:16.5px;min-height:28px}
+
+.drop{min-height:86px;border:2px dashed var(--line);border-radius:14px;padding:14px;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;margin-bottom:16px;background:var(--surface-2);transition:border-color .2s}
+.drop.ok{border-color:var(--good);border-style:solid}
+.drop:empty::before{content:"Ketuk kata di bawah untuk menyusun kalimat";color:var(--muted);font-size:15px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-size:16px;transition:transform .14s,border-color .15s;animation:pop .22s}
+@keyframes pop{from{transform:scale(.85);opacity:0}}
+.chip:hover{transform:translateY(-2px);border-color:var(--accent)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;margin-bottom:20px}
+
+.wave{display:flex;gap:4px;align-items:flex-end;height:46px;margin-bottom:20px}
+.wave b{width:5px;border-radius:99px;background:var(--line);height:20%;transition:height .2s}
+.wave.on b{background:var(--accent);animation:bounce 1.1s ease-in-out infinite}
+.wave.on b:nth-child(2n){animation-delay:.12s}
+.wave.on b:nth-child(3n){animation-delay:.26s}
+.wave.on b:nth-child(4n){animation-delay:.38s}
+@keyframes bounce{0%,100%{height:18%}50%{height:100%}}
+input[type=text]{flex:1;min-width:220px;background:var(--surface-2);border:1px solid var(--line);color:var(--ink);border-radius:13px;padding:14px 16px;font:inherit;font-size:16px}
+input[type=text]::placeholder{color:var(--muted)}
+.diff span{padding:1px 3px;border-radius:5px}
+.diff .hit{color:var(--good);font-weight:600}
+.diff .miss{background:color-mix(in srgb,var(--bad) 20%,transparent)}
+
+/* cocokkan */
+.match-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.match-clock{font-variant-numeric:tabular-nums;font-weight:800;font-size:20px;background:var(--surface-2);border:1px solid var(--line);padding:8px 14px;border-radius:12px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.match-grid{grid-template-columns:1fr}}
+.mcol{display:flex;flex-direction:column;gap:10px}
+.mcard{
+  text-align:left;background:var(--surface-2);border:1px solid var(--line);border-radius:13px;padding:14px 16px;
+  font-size:15.5px;transition:border-color .15s,background .15s,transform .12s,opacity .3s;
+}
+.mcard[data-sel="1"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.mcard.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--surface));opacity:.55;pointer-events:none}
+.mcard.wrong{border-color:var(--bad);animation:shake .35s}
+.mcard:disabled{cursor:default}
+
+/* progres */
+.ringwrap{display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.ring{transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:13;stroke-linecap:round}
+.ring .bg{stroke:var(--surface-2)}
+.ring .fg{stroke:var(--accent);transition:stroke-dashoffset .8s cubic-bezier(.2,.8,.2,1)}
+.skills{display:grid;gap:14px;margin-top:26px}
+.skill{display:grid;grid-template-columns:140px 1fr 46px;gap:12px;align-items:center;font-size:15px}
+.skill .track{height:9px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.skill .track u{display:block;height:100%;background:var(--accent);width:0;transition:width .7s ease}
+@media(max-width:560px){.skill{grid-template-columns:104px 1fr 40px;font-size:14px}}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:22px}
+.badge{border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:var(--surface-2);opacity:.35;filter:grayscale(1);transition:opacity .3s,filter .3s,transform .2s}
+.badge.on{opacity:1;filter:none}
+.badge.on:hover{transform:translateY(-3px)}
+.badge .ic{font-size:26px;display:block;margin-bottom:6px}
+.badge .lb{font-size:12.5px;font-weight:700}
+
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:12px;font-size:15px;z-index:90;transition:opacity .25s,transform .25s;max-width:88vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+.xpfly{position:fixed;z-index:95;font-weight:800;color:var(--good);pointer-events:none;animation:fly 1s ease-out forwards}
+@keyframes fly{to{transform:translateY(-60px);opacity:0}}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:98}
+
+.tabbar{display:none}
+@media(max-width:860px){
+  .app{grid-template-columns:1fr}
+  aside{position:static;height:auto;flex-direction:row;align-items:center;border-right:none;border-bottom:1px solid var(--line);padding:12px 16px}
+  aside .navlink,aside .mini{display:none}
+  .logo{padding:0}
+  .side-foot{margin-left:auto;margin-top:0}
+  main{padding:26px 18px 112px}
+  .tabbar{
+    display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);padding:7px 4px calc(7px + env(safe-area-inset-bottom));
+  }
+  .tab{text-align:center;text-decoration:none;color:var(--muted);font-size:10.5px;font-weight:600;padding:5px 1px;border-radius:10px}
+  .tab em{display:block;font-size:16px;font-style:normal;margin-bottom:2px}
+  .tab.active{color:var(--accent)}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body data-page="beranda">
+
+<canvas id="confetti"></canvas>
+
+<div class="app">
+  <aside>
+    <a class="logo" href="#/beranda">affan<b>.dev</b></a>
+    <a class="navlink" data-nav="beranda" href="#/beranda"><i class="dot"></i>Beranda</a>
+    <a class="navlink" data-nav="kosakata" href="#/kosakata"><i class="dot"></i>Kartu kosakata</a>
+    <a class="navlink" data-nav="kuis" href="#/kuis"><i class="dot"></i>Kuis</a>
+    <a class="navlink" data-nav="cocokkan" href="#/cocokkan"><i class="dot"></i>Cocokkan</a>
+    <a class="navlink" data-nav="kalimat" href="#/kalimat"><i class="dot"></i>Susun kalimat</a>
+    <a class="navlink" data-nav="dengar" href="#/dengar"><i class="dot"></i>Dengar &amp; tulis</a>
+    <a class="navlink" data-nav="progres" href="#/progres"><i class="dot"></i>Progres</a>
+    <div class="side-foot">
+      <div class="mini"><span>Poin hari ini</span><b id="miniXp">0</b></div>
+      <button class="icon-btn" id="soundBtn" aria-label="Nyala/matikan efek suara">♪</button>
+      <button class="icon-btn" id="themeBtn" aria-label="Ganti tema terang atau gelap">◐</button>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ============ BERANDA ============ -->
+    <section class="page on" id="p-beranda">
+      <p class="eyebrow">Selasa yang bagus untuk latihan</p>
+      <h1>Bahasa Inggris yang <span class="mark"><span>nempel</span></span>, bukan cuma dihafal.</h1>
+      <p class="lede">Lima latihan pendek, masing-masing punya halaman sendiri. Pilih satu, lima menit, selesai.</p>
+
+      <div class="tiles">
+        <a class="tile" href="#/kosakata" style="--c:#C8871B"><i></i>
+          <h3>Kartu kosakata</h3><p>Geser kartu, balik untuk lihat arti, coba ucapkan kerasnya.</p>
+          <div class="bar"><u id="tKos"></u></div>
+        </a>
+        <a class="tile" href="#/kuis" style="--c:#2F5BEA"><i></i>
+          <h3>Kuis</h3><p>Enam soal campuran arti kata dan kalimat rumpang.</p>
+          <div class="bar"><u id="tKui"></u></div>
+        </a>
+        <a class="tile" href="#/cocokkan" style="--c:#B5459A"><i></i>
+          <h3>Cocokkan</h3><p>Pasangkan kata dengan artinya secepat mungkin.</p>
+          <div class="bar"><u id="tCok"></u></div>
+        </a>
+        <a class="tile" href="#/kalimat" style="--c:#12876A"><i></i>
+          <h3>Susun kalimat</h3><p>Latih urutan kata yang sering terbalik saat menerjemahkan.</p>
+          <div class="bar"><u id="tKal"></u></div>
+        </a>
+        <a class="tile" href="#/dengar" style="--c:#7A45D6"><i></i>
+          <h3>Dengar &amp; tulis</h3><p>Kalimat dibacakan, kamu tulis. Cek per kata.</p>
+          <div class="bar"><u id="tDen"></u></div>
+        </a>
+      </div>
+
+      <article class="wod">
+        <p class="tiny">Kata hari ini</p>
+        <h2 id="wodWord">—</h2>
+        <p class="ipa" id="wodIpa">—</p>
+        <p class="serif" id="wodMeaning" style="font-size:18px;margin:12px 0 4px">—</p>
+        <p class="serif" id="wodExample" style="color:var(--muted);border-left:2px solid var(--line);padding-left:12px;margin:10px 0 18px">—</p>
+        <button class="btn ghost" id="wodSpeak">▶ Dengar pengucapan</button>
+      </article>
+    </section>
+
+    <!-- ============ KOSAKATA ============ -->
+    <section class="page" id="p-kosakata">
+      <p class="eyebrow">Latihan 1 dari 5</p>
+      <h1>Kartu kosakata</h1>
+      <p class="lede">Tebak artinya dulu, ketuk kartu untuk membalik. Geser untuk pindah kata, atau coba ucapkan kerasnya.</p>
+
+      <div class="pips" id="fcPips"></div>
+      <div class="deck">
+        <div class="flip" id="flip" role="button" tabindex="0" aria-label="Balik kartu">
+          <div class="face front">
+            <span class="known-flag" id="fcFlag" hidden>sudah hafal</span>
+            <p class="tiny" id="fcPos">—</p>
+            <h4 id="fcWord">—</h4>
+            <p class="ipa" id="fcIpa">—</p>
+            <p class="tiny" style="margin-top:18px">ketuk untuk melihat arti</p>
+          </div>
+          <div class="face back">
+            <p class="m" id="fcMeaning">—</p>
+            <p class="ex" id="fcExample">—</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn ghost" id="fcPrev">← Sebelumnya</button>
+        <button class="btn ghost" id="fcNext">Berikutnya →</button>
+        <button class="btn ghost" id="fcSpeak">▶ Dengar</button>
+        <button class="btn ghost" id="fcMic">🎤 Coba ucapkan</button>
+        <button class="btn" id="fcKnow">Sudah hafal</button>
+        <span class="tiny" id="fcCount" style="margin-left:auto"></span>
+      </div>
+      <p class="mic-fb" id="fcMicFb"></p>
+    </section>
+
+    <!-- ============ KUIS ============ -->
+    <section class="page" id="p-kuis">
+      <p class="eyebrow">Latihan 2 dari 5</p>
+      <h1>Kuis</h1>
+      <p class="lede">Jawab dengan mengetuk pilihan, atau tekan tombol 1–4 di papan ketik.</p>
+
+      <div class="panel">
+        <div class="progress"><u id="qBar"></u></div>
+        <div class="qmeta"><span id="qPosLbl">Soal 1 dari 6</span><span id="qScoreLbl">Benar beruntun: 0</span></div>
+        <p class="q" id="qText">Memuat soal…</p>
+        <div class="opts" id="qOpts"></div>
+        <p class="feedback" id="qFeedback"></p>
+      </div>
+    </section>
+
+    <!-- ============ COCOKKAN ============ -->
+    <section class="page" id="p-cocokkan">
+      <p class="eyebrow">Latihan 3 dari 5</p>
+      <h1>Cocokkan</h1>
+      <p class="lede">Ketuk satu kata di kiri, lalu artinya di kanan. Selesaikan semua pasangan secepat mungkin.</p>
+
+      <div class="panel">
+        <div class="match-top">
+          <span class="tiny">Rekor tercepat: <b id="mBest">—</b></span>
+          <span class="match-clock" id="mClock">00:00</span>
+        </div>
+        <div class="match-grid">
+          <div class="mcol" id="mWords"></div>
+          <div class="mcol" id="mMeans"></div>
+        </div>
+        <div class="row" style="margin-top:18px">
+          <button class="btn ghost" id="mReset">Acak ulang</button>
+        </div>
+        <p class="feedback" id="mFeedback"></p>
+      </div>
+    </section>
+
+    <!-- ============ SUSUN KALIMAT ============ -->
+    <section class="page" id="p-kalimat">
+      <p class="eyebrow">Latihan 4 dari 5</p>
+      <h1>Susun kalimat</h1>
+      <p class="lede">Urutan kata bahasa Inggris sering beda dengan bahasa Indonesia. Latih polanya di sini.</p>
+
+      <div class="panel">
+        <p class="serif" style="margin:0 0 6px;font-size:19px" id="sbHint">—</p>
+        <p class="tiny" style="margin:0 0 18px">Terjemahkan kalimat di atas ke bahasa Inggris</p>
+        <div class="drop" id="sbDrop" aria-label="Kalimat yang kamu susun"></div>
+        <div class="bank" id="sbBank"></div>
+        <div class="row">
+          <button class="btn" id="sbCheck">Periksa kalimat</button>
+          <button class="btn ghost" id="sbClear">Kosongkan</button>
+          <button class="btn ghost" id="sbHintBtn">Beri petunjuk</button>
+          <button class="btn ghost" id="sbNext">Kalimat lain</button>
+        </div>
+        <p class="feedback" id="sbFeedback"></p>
+      </div>
+    </section>
+
+    <!-- ============ DENGAR ============ -->
+    <section class="page" id="p-dengar">
+      <p class="eyebrow">Latihan 5 dari 5</p>
+      <h1>Dengar &amp; tulis</h1>
+      <p class="lede">Kalimat dibacakan suara bawaan perangkatmu. Putar sepelan yang kamu butuh, lalu tulis yang kamu dengar.</p>
+
+      <div class="panel">
+        <div class="wave" id="wave"></div>
+        <div class="row" style="margin-bottom:16px">
+          <button class="btn" id="lsPlay">▶ Putar kalimat</button>
+          <button class="btn ghost" id="lsSlow">Putar pelan</button>
+          <button class="btn ghost" id="lsNext">Kalimat lain</button>
+        </div>
+        <div class="row">
+          <input type="text" id="lsInput" placeholder="Tulis kalimat yang kamu dengar" autocomplete="off" spellcheck="false">
+          <button class="btn" id="lsCheck">Periksa</button>
+        </div>
+        <p class="feedback diff" id="lsFeedback"></p>
+      </div>
+    </section>
+
+    <!-- ============ PROGRES ============ -->
+    <section class="page" id="p-progres">
+      <p class="eyebrow">Catatan belajarmu</p>
+      <h1>Progres</h1>
+      <p class="lede">Target harian 60 poin — kira-kira satu putaran dari tiap latihan.</p>
+
+      <div class="panel">
+        <div class="ringwrap">
+          <svg class="ring" width="132" height="132" viewBox="0 0 132 132" aria-hidden="true">
+            <circle class="bg" cx="66" cy="66" r="56"></circle>
+            <circle class="fg" id="ringFg" cx="66" cy="66" r="56" stroke-dasharray="351.8" stroke-dashoffset="351.8"></circle>
+          </svg>
+          <div>
+            <p style="font-size:34px;font-weight:800;margin:0;letter-spacing:-.03em"><span id="pgXp">0</span> <span style="font-size:18px;color:var(--muted);font-weight:600">/ 60 poin</span></p>
+            <p class="tiny" style="margin:4px 0 0">Hari berturut-turut: <b id="pgStreak">0</b> · Akurasi kuis: <b id="pgAcc">0%</b></p>
+          </div>
+        </div>
+
+        <div class="skills">
+          <div class="skill"><span>Kosakata</span><div class="track"><u id="bKos"></u></div><span id="nKos">0</span></div>
+          <div class="skill"><span>Kuis</span><div class="track"><u id="bKui"></u></div><span id="nKui">0</span></div>
+          <div class="skill"><span>Cocokkan</span><div class="track"><u id="bCok"></u></div><span id="nCok">0</span></div>
+          <div class="skill"><span>Susun kalimat</span><div class="track"><u id="bKal"></u></div><span id="nKal">0</span></div>
+          <div class="skill"><span>Dengar</span><div class="track"><u id="bDen"></u></div><span id="nDen">0</span></div>
+        </div>
+
+        <p class="tiny" style="margin:26px 0 0">Lencana</p>
+        <div class="badges" id="badgeShelf"></div>
+
+        <div class="row" style="margin-top:26px">
+          <button class="btn ghost" id="resetBtn">Ulang dari nol</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<nav class="tabbar">
+  <a class="tab" data-nav="beranda" href="#/beranda"><em>⌂</em>Beranda</a>
+  <a class="tab" data-nav="kosakata" href="#/kosakata"><em>▤</em>Kartu</a>
+  <a class="tab" data-nav="kuis" href="#/kuis"><em>◎</em>Kuis</a>
+  <a class="tab" data-nav="cocokkan" href="#/cocokkan"><em>⇌</em>Cocok</a>
+  <a class="tab" data-nav="kalimat" href="#/kalimat"><em>⇄</em>Kalimat</a>
+  <a class="tab" data-nav="dengar" href="#/dengar"><em>♪</em>Dengar</a>
+</nav>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===================== DATA ===================== */
+const VOCAB = [
+  {w:"resilient", ipa:"/rɪˈzɪliənt/", pos:"kata sifat", m:"tangguh; cepat pulih setelah kesulitan", ex:"She is resilient — she bounced back within a week."},
+  {w:"commute", ipa:"/kəˈmjuːt/", pos:"kata kerja", m:"pergi-pulang kerja setiap hari", ex:"I commute by train every morning."},
+  {w:"deadline", ipa:"/ˈdedlaɪn/", pos:"kata benda", m:"batas waktu penyelesaian", ex:"The deadline is Friday at noon."},
+  {w:"reliable", ipa:"/rɪˈlaɪəbl/", pos:"kata sifat", m:"dapat diandalkan", ex:"He is the most reliable person on the team."},
+  {w:"struggle", ipa:"/ˈstrʌɡl/", pos:"kata kerja", m:"berjuang; kesulitan melakukan sesuatu", ex:"I still struggle with past tense."},
+  {w:"improve", ipa:"/ɪmˈpruːv/", pos:"kata kerja", m:"menjadi lebih baik; memperbaiki", ex:"Your writing has improved a lot."},
+  {w:"afford", ipa:"/əˈfɔːrd/", pos:"kata kerja", m:"mampu membeli atau menanggung", ex:"We cannot afford a new laptop right now."},
+  {w:"schedule", ipa:"/ˈskedʒuːl/", pos:"kata benda", m:"jadwal", ex:"My schedule is full until Thursday."},
+  {w:"curious", ipa:"/ˈkjʊəriəs/", pos:"kata sifat", m:"penasaran; ingin tahu", ex:"I am curious about how it works."},
+  {w:"borrow", ipa:"/ˈbɒrəʊ/", pos:"kata kerja", m:"meminjam dari orang lain", ex:"Can I borrow your charger for a minute?"},
+  {w:"attend", ipa:"/əˈtend/", pos:"kata kerja", m:"menghadiri", ex:"I attend an online class every Tuesday."},
+  {w:"gentle", ipa:"/ˈdʒentl/", pos:"kata sifat", m:"lembut; tidak kasar", ex:"Please be gentle with the old book."}
+];
+const SENTENCES = [
+  {en:"I have been learning English for two years", id:"Saya sudah belajar bahasa Inggris selama dua tahun."},
+  {en:"She usually takes the bus to work", id:"Dia biasanya naik bus ke tempat kerja."},
+  {en:"We are going to finish the report tomorrow", id:"Kami akan menyelesaikan laporan itu besok."},
+  {en:"He did not answer my message last night", id:"Dia tidak membalas pesan saya tadi malam."},
+  {en:"Could you explain that one more time", id:"Bisakah kamu menjelaskannya sekali lagi?"},
+  {en:"There is a small cafe near my house", id:"Ada kafe kecil di dekat rumah saya."},
+  {en:"I will call you after the meeting ends", id:"Saya akan menelepon kamu setelah rapat selesai."}
+];
+const LISTEN = [
+  "The meeting starts at nine in the morning.",
+  "I would like a glass of water, please.",
+  "She has already finished her homework.",
+  "We need to leave before it gets dark.",
+  "Do you know how far the station is?",
+  "This is the best coffee I have ever tried."
+];
+const BADGES = [
+  {id:"first5", ic:"🌱", lb:"5 kata hafal", test:p=>p.learned.length>=5 || p.totalLearned>=5},
+  {id:"quizacc", ic:"🎯", lb:"Akurasi 80%+", test:p=>p.qTotal>=6 && (p.qRight/p.qTotal)>=0.8},
+  {id:"streak3", ic:"🔥", lb:"3 hari beruntun", test:p=>p.streak>=3},
+  {id:"match60", ic:"⚡", lb:"Cocokkan di bawah 1 menit", test:p=>p.bestMatch!=null && p.bestMatch<=60},
+  {id:"goal", ic:"🏆", lb:"Target harian tercapai", test:p=>p.xp>=60},
+  {id:"allround", ic:"🧩", lb:"Coba semua latihan", test:p=>p.cKos>0&&p.cKui>0&&p.cKal>0&&p.cDen>0&&p.cCok>0}
+];
+
+/* ===================== UTIL ===================== */
+const $ = id => document.getElementById(id);
+const rnd = n => Math.floor(Math.random()*n);
+const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(p=>p[1]);
+const norm = s => s.toLowerCase().replace(/[^a-z0-9' ]/g," ").replace(/\s+/g," ").trim();
+let toastTimer;
+function toast(msg){
+  const t=$("toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),2300);
+}
+function xpFly(n, el){
+  const r=(el||document.body).getBoundingClientRect();
+  const s=document.createElement("div");
+  s.className="xpfly"; s.textContent="+"+n;
+  s.style.left=(r.left+r.width/2)+"px"; s.style.top=(r.top-6)+"px";
+  document.body.appendChild(s); setTimeout(()=>s.remove(),1000);
+}
+
+/* ===================== SUARA UI (nada) ===================== */
+let soundOn = true;
+try{ const s=localStorage.getItem("affan.sound"); if(s!==null) soundOn = s==="1"; }catch(e){}
+let actx=null;
+function tone(freq,dur,type){
+  if(!soundOn) return;
+  try{
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    const o=actx.createOscillator(), g=actx.createGain();
+    o.type=type||"sine"; o.frequency.value=freq;
+    g.gain.value=0.06; o.connect(g); g.connect(actx.destination);
+    o.start(); g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime+dur);
+    o.stop(actx.currentTime+dur);
+  }catch(e){}
+}
+const sndGood = ()=>{ tone(660,.12); setTimeout(()=>tone(880,.16),90); };
+const sndBad = ()=>{ tone(220,.22,"sawtooth"); };
+const sndTap = ()=>tone(520,.05);
+function refreshSoundBtn(){
+  $("soundBtn").textContent = soundOn ? "♪" : "🔇";
+  $("soundBtn").classList.toggle("off", !soundOn);
+}
+$("soundBtn").addEventListener("click",()=>{
+  soundOn=!soundOn; try{localStorage.setItem("affan.sound", soundOn?"1":"0");}catch(e){}
+  refreshSoundBtn(); if(soundOn) sndTap();
+});
+refreshSoundBtn();
+
+/* ===================== KONFETI ===================== */
+const cvs=$("confetti"), cctx=cvs.getContext("2d");
+function fitCanvas(){ cvs.width=innerWidth; cvs.height=innerHeight; }
+fitCanvas(); addEventListener("resize", fitCanvas);
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function confettiBurst(){
+  if(reduceMotion) return;
+  const colors=["#2F5BEA","#EAB149","#12876A","#B5459A","#7A45D6"];
+  const parts=Array.from({length:70},()=>({
+    x:cvs.width/2,y:cvs.height*0.25,
+    vx:(Math.random()-0.5)*11,vy:Math.random()*-9-3,
+    g:0.32,size:5+Math.random()*5,rot:Math.random()*360,vr:(Math.random()-0.5)*14,
+    c:colors[rnd(colors.length)],life:80+rnd(30)
+  }));
+  let f=0;
+  (function frame(){
+    f++; cctx.clearRect(0,0,cvs.width,cvs.height);
+    let alive=false;
+    parts.forEach(p=>{
+      if(p.life<=0) return; alive=true; p.life--;
+      p.vy+=p.g; p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+      cctx.save(); cctx.translate(p.x,p.y); cctx.rotate(p.rot*Math.PI/180);
+      cctx.fillStyle=p.c; cctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*0.6);
+      cctx.restore();
+    });
+    if(alive && f<220) requestAnimationFrame(frame); else cctx.clearRect(0,0,cvs.width,cvs.height);
+  })();
+}
+
+/* ===================== PROGRES ===================== */
+const KEY="affan.progress.v3";
+let P={xp:0,streak:0,lastDay:null,learned:[],totalLearned:0,qRight:0,qTotal:0,
+       cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,bestMatch:null,badges:[]};
+function load(){
+  try{const raw=localStorage.getItem(KEY); if(raw) P=Object.assign(P,JSON.parse(raw));}catch(e){}
+  const today=new Date().toDateString();
+  if(P.lastDay!==today){
+    const y=new Date(Date.now()-86400000).toDateString();
+    P.streak = (P.lastDay===y) ? P.streak+1 : 1;
+    P.lastDay=today; P.learned=[]; P.xp=0; P.cKos=P.cKui=P.cKal=P.cDen=P.cCok=0;
+    save();
+  }
+}
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){} render(); checkBadges(); }
+function addXp(n,why,el){ P.xp+=n; save(); if(el) xpFly(n,el); if(why) toast(why); if(P.xp>=60 && P.xp-n<60){ confettiBurst(); toast("Target harian 60 poin tercapai! 🎉"); } }
+function checkBadges(){
+  BADGES.forEach(b=>{
+    if(!P.badges.includes(b.id) && b.test(P)){
+      P.badges.push(b.id);
+      try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){}
+      renderBadges();
+      toast("Lencana baru terbuka: "+b.ic+" "+b.lb);
+      confettiBurst();
+    }
+  });
+}
+function renderBadges(){
+  const shelf=$("badgeShelf"); shelf.innerHTML="";
+  BADGES.forEach(b=>{
+    const on=P.badges.includes(b.id);
+    const d=document.createElement("div");
+    d.className="badge"+(on?" on":"");
+    d.innerHTML='<span class="ic">'+b.ic+'</span><span class="lb">'+b.lb+'</span>';
+    shelf.appendChild(d);
+  });
+}
+function render(){
+  $("miniXp").textContent=P.xp;
+  $("pgXp").textContent=P.xp;
+  $("pgStreak").textContent=P.streak;
+  $("pgAcc").textContent=(P.qTotal?Math.round(P.qRight/P.qTotal*100):0)+"%";
+  const pct=Math.min(1,P.xp/60);
+  $("ringFg").style.strokeDashoffset = 351.8*(1-pct);
+  $("mBest").textContent = P.bestMatch!=null ? P.bestMatch.toFixed(1)+" dtk" : "—";
+  const caps={cKos:8,cKui:12,cKal:6,cDen:5,cCok:6};
+  const map=[["cKos","bKos","nKos","tKos"],["cKui","bKui","nKui","tKui"],["cKal","bKal","nKal","tKal"],["cDen","bDen","nDen","tDen"],["cCok","bCok","nCok","tCok"]];
+  map.forEach(([k,bar,num,tile])=>{
+    const w=Math.min(100,P[k]/caps[k]*100);
+    $(bar).style.width=w+"%"; $(num).textContent=P[k]; $(tile).style.width=w+"%";
+  });
+}
+
+/* ===================== ROUTER ===================== */
+const PAGES=["beranda","kosakata","kuis","cocokkan","kalimat","dengar","progres"];
+function route(){
+  let name=(location.hash.replace("#/","")||"beranda");
+  if(!PAGES.includes(name)) name="beranda";
+  document.body.dataset.page=name;
+  PAGES.forEach(p=>$("p-"+p).classList.toggle("on", p===name));
+  document.querySelectorAll("[data-nav]").forEach(a=>a.classList.toggle("active", a.dataset.nav===name));
+  window.scrollTo({top:0,behavior:"instant"});
+  if(name==="dengar") setTimeout(()=>$("lsInput").focus(),300);
+  if(name==="cocokkan" && !matchStarted) initMatch();
+}
+window.addEventListener("hashchange", route);
+
+/* ===================== SUARA TTS ===================== */
+let voice=null;
+function pickVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const v=speechSynthesis.getVoices();
+  voice=v.find(x=>/en-GB/i.test(x.lang))||v.find(x=>/^en/i.test(x.lang))||null;
+}
+if("speechSynthesis" in window){pickVoice(); speechSynthesis.onvoiceschanged=pickVoice;}
+function say(text,rate=1,onDone){
+  if(!("speechSynthesis" in window)){toast("Peramban ini belum mendukung pemutaran suara."); onDone&&onDone(); return;}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US"; u.rate=rate; if(voice)u.voice=voice;
+  u.onend=u.onerror=()=>onDone&&onDone();
+  speechSynthesis.speak(u);
+}
+
+/* ===================== KATA HARI INI ===================== */
+const wod=VOCAB[new Date().getDate()%VOCAB.length];
+$("wodWord").textContent=wod.w;
+$("wodIpa").textContent=wod.ipa+" · "+wod.pos;
+$("wodMeaning").textContent=wod.m;
+$("wodExample").textContent=wod.ex;
+$("wodSpeak").addEventListener("click",()=>say(wod.w+". "+wod.ex,0.95));
+
+/* ===================== FLASHCARD ===================== */
+let fcIdx=0;
+const flip=$("flip");
+function drawCard(){
+  const v=VOCAB[fcIdx];
+  flip.classList.remove("is-flipped");
+  $("fcWord").textContent=v.w; $("fcIpa").textContent=v.ipa; $("fcPos").textContent=v.pos;
+  $("fcMeaning").textContent=v.m; $("fcExample").textContent=v.ex;
+  $("fcCount").textContent=(fcIdx+1)+" dari "+VOCAB.length;
+  $("fcFlag").hidden=!P.learned.includes(v.w);
+  $("fcMicFb").textContent=""; $("fcMicFb").className="mic-fb";
+  const pips=$("fcPips"); pips.innerHTML="";
+  VOCAB.forEach((x,i)=>{
+    const d=document.createElement("i");
+    d.className="pip"+(P.learned.includes(x.w)?" done":"")+(i===fcIdx?" now":"");
+    pips.appendChild(d);
+  });
+}
+function go(step){ fcIdx=(fcIdx+step+VOCAB.length)%VOCAB.length; flip.style.transform=""; drawCard(); }
+flip.addEventListener("keydown",e=>{
+  if(e.key===" "||e.key==="Enter"){e.preventDefault(); flip.classList.toggle("is-flipped"); sndTap();}
+  if(e.key==="ArrowRight") go(1);
+  if(e.key==="ArrowLeft") go(-1);
+});
+let sx=0,dx=0,dragging=false;
+flip.addEventListener("pointerdown",e=>{sx=e.clientX;dx=0;dragging=true;flip.classList.add("drag");flip.setPointerCapture(e.pointerId);});
+flip.addEventListener("pointermove",e=>{
+  if(!dragging)return; dx=e.clientX-sx;
+  flip.style.transform=`translateX(${dx}px) rotate(${dx/26}deg)`+(flip.classList.contains("is-flipped")?" rotateY(180deg)":"");
+});
+flip.addEventListener("pointerup",()=>{
+  if(!dragging)return; dragging=false; flip.classList.remove("drag");
+  if(Math.abs(dx)>90){ go(dx<0?1:-1); }
+  else if(Math.abs(dx)<6){ flip.style.transform=""; flip.classList.toggle("is-flipped"); sndTap(); }
+  else { flip.style.transform=flip.classList.contains("is-flipped")?"rotateY(180deg)":""; }
+});
+$("fcNext").addEventListener("click",()=>go(1));
+$("fcPrev").addEventListener("click",()=>go(-1));
+$("fcSpeak").addEventListener("click",()=>{const v=VOCAB[fcIdx];say(v.w+". "+v.ex,0.95);});
+$("fcKnow").addEventListener("click",e=>{
+  const w=VOCAB[fcIdx].w;
+  if(P.learned.includes(w)){toast("Kata ini sudah ditandai hari ini."); return;}
+  P.learned.push(w); P.totalLearned=(P.totalLearned||0)+1; P.cKos++;
+  sndGood(); addXp(5,"“"+w+"” ditandai hafal.",e.currentTarget);
+  go(1);
+});
+
+/* pengucapan (Web Speech API) */
+const SR = window.SpeechRecognition||window.webkitSpeechRecognition;
+const micBtn=$("fcMic");
+if(!SR){ micBtn.disabled=true; micBtn.title="Pengenalan suara tidak tersedia di peramban ini"; }
+micBtn.addEventListener("click",()=>{
+  if(!SR) return;
+  const rec=new SR(); rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=3;
+  micBtn.classList.add("listening"); micBtn.textContent="🎙 Mendengarkan…";
+  const fb=$("fcMicFb"); fb.textContent="Ucapkan sekarang…"; fb.className="mic-fb";
+  rec.start();
+  rec.onresult=(e)=>{
+    const said = e.results[0][0].transcript.toLowerCase().replace(/[^a-z ]/g,"").trim();
+    const target = VOCAB[fcIdx].w.toLowerCase();
+    if(said.includes(target)){
+      fb.textContent="Pas. Terdengar seperti “"+said+"”."; fb.className="mic-fb ok";
+      sndGood(); addXp(3,"Pengucapan tepat.",micBtn);
+    }else{
+      fb.textContent="Terdengar “"+said+"”, target “"+target+"”. Coba sekali lagi.";
+      fb.className="mic-fb bad"; sndBad();
+    }
+  };
+  rec.onerror=()=>{ fb.textContent="Mikrofon tidak dapat diakses."; fb.className="mic-fb bad"; };
+  rec.onend=()=>{ micBtn.classList.remove("listening"); micBtn.textContent="🎤 Coba ucapkan"; };
+});
+
+/* ===================== KUIS ===================== */
+let qSet=[],qPos=0,qStreak=0,locked=false;
+function buildQuestions(){
+  const pool=shuffle(VOCAB);
+  return pool.slice(0,6).map((v,i)=>{
+    const others=shuffle(VOCAB.filter(x=>x.w!==v.w)).slice(0,3);
+    if(i%3===0){
+      return {text:"Apa arti kata “"+v.w+"”?",opts:shuffle([v,...others]).map(o=>({label:o.m,ok:o.w===v.w})),
+        note:"“"+v.w+"” artinya "+v.m+". Contoh: "+v.ex};
+    }
+    if(i%3===1){
+      return {text:"Kata Inggris untuk “"+v.m+"” adalah…",opts:shuffle([v,...others]).map(o=>({label:o.w,ok:o.w===v.w})),
+        note:"Jawabannya "+v.w+". Contoh: "+v.ex};
+    }
+    const blank=v.ex.replace(new RegExp("\\b"+v.w+"\\b","i"),"_____");
+    return {text:"Lengkapi: "+blank,opts:shuffle([v,...others]).map(o=>({label:o.w,ok:o.w===v.w})),
+      note:"Kalimat lengkapnya: "+v.ex};
+  });
+}
+function newQuiz(){ qSet=buildQuestions(); qPos=0; qStreak=0; drawQ(); }
+function drawQ(){
+  locked=false; $("qFeedback").textContent="";
+  $("qBar").style.width=(qPos/qSet.length*100)+"%";
+  $("qScoreLbl").textContent="Benar beruntun: "+qStreak;
+  if(qPos>=qSet.length){
+    $("qPosLbl").textContent="Ronde selesai";
+    $("qText").textContent="Ronde selesai. Akurasimu sekarang "+(P.qTotal?Math.round(P.qRight/P.qTotal*100):0)+"%.";
+    $("qOpts").innerHTML="";
+    const b=document.createElement("button"); b.className="btn"; b.textContent="Main ronde baru"; b.onclick=newQuiz;
+    $("qOpts").appendChild(b); $("qBar").style.width="100%";
+    confettiBurst();
+    return;
+  }
+  const q=qSet[qPos];
+  $("qPosLbl").textContent="Soal "+(qPos+1)+" dari "+qSet.length;
+  $("qText").textContent=q.text;
+  $("qOpts").innerHTML="";
+  q.opts.forEach((o,i)=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.innerHTML='<span class="k">'+(i+1)+'</span><span></span>';
+    b.lastChild.textContent=o.label;
+    b.onclick=()=>answer(b,o,q);
+    $("qOpts").appendChild(b);
+  });
+}
+function answer(btn,o,q){
+  if(locked)return; locked=true;
+  const all=[...$("qOpts").children];
+  all.forEach(b=>b.disabled=true);
+  P.qTotal++;
+  if(o.ok){
+    btn.classList.add("correct"); qStreak++; P.qRight++; P.cKui++;
+    const bonus=qStreak>=3?2:0;
+    $("qFeedback").textContent="Benar. "+q.note+(bonus?" (bonus beruntun +2)":"");
+    sndGood(); addXp(4+bonus,"",btn);
+  }else{
+    btn.classList.add("wrong"); qStreak=0; sndBad();
+    all.find(b=>b.lastChild.textContent===q.opts.find(x=>x.ok).label)?.classList.add("correct");
+    $("qFeedback").textContent="Belum tepat. "+q.note;
+    save();
+  }
+  $("qScoreLbl").textContent="Benar beruntun: "+qStreak;
+  setTimeout(()=>{qPos++; drawQ();},2000);
+}
+document.addEventListener("keydown",e=>{
+  if(document.body.dataset.page!=="kuis")return;
+  const n=parseInt(e.key,10);
+  if(n>=1&&n<=4){ const b=$("qOpts").children[n-1]; if(b&&!b.disabled)b.click(); }
+});
+newQuiz();
+
+/* ===================== COCOKKAN ===================== */
+let matchStarted=false, mTimer=null, mStart=0, mSelWord=null, mSelMean=null, mLeft=0;
+function initMatch(){ matchStarted=true; buildMatch(); }
+function buildMatch(){
+  clearInterval(mTimer); $("mClock").textContent="00:00";
+  const set=shuffle(VOCAB).slice(0,6);
+  mLeft=set.length; mSelWord=null; mSelMean=null;
+  $("mFeedback").textContent="";
+  const wCol=$("mWords"), mCol=$("mMeans");
+  wCol.innerHTML=""; mCol.innerHTML="";
+  shuffle(set).forEach(v=>{
+    const b=document.createElement("button"); b.className="mcard"; b.textContent=v.w; b.dataset.w=v.w;
+    b.onclick=()=>pickWord(b); wCol.appendChild(b);
+  });
+  shuffle(set).forEach(v=>{
+    const b=document.createElement("button"); b.className="mcard"; b.textContent=v.m; b.dataset.w=v.w;
+    b.onclick=()=>pickMean(b); mCol.appendChild(b);
+  });
+  mStart=performance.now();
+  mTimer=setInterval(()=>{
+    const t=(performance.now()-mStart)/1000;
+    $("mClock").textContent=t.toFixed(1).padStart(5,"0")+"s";
+  },100);
+}
+function pickWord(b){
+  if(b.classList.contains("correct"))return;
+  if(mSelWord) mSelWord.removeAttribute("data-sel");
+  mSelWord=b; b.dataset.sel="1"; sndTap();
+  tryMatch();
+}
+function pickMean(b){
+  if(b.classList.contains("correct"))return;
+  if(mSelMean) mSelMean.removeAttribute("data-sel");
+  mSelMean=b; b.dataset.sel="1"; sndTap();
+  tryMatch();
+}
+function tryMatch(){
+  if(!mSelWord||!mSelMean) return;
+  if(mSelWord.dataset.w===mSelMean.dataset.w){
+    mSelWord.classList.add("correct"); mSelMean.classList.add("correct");
+    mSelWord.removeAttribute("data-sel"); mSelMean.removeAttribute("data-sel");
+    sndGood(); mLeft--;
+    mSelWord=mSelMean=null;
+    if(mLeft===0){
+      clearInterval(mTimer);
+      const t=(performance.now()-mStart)/1000;
+      $("mClock").textContent=t.toFixed(1)+"s — selesai";
+      const isBest = P.bestMatch==null || t<P.bestMatch;
+      if(isBest){ P.bestMatch=t; $("mFeedback").textContent="Rekor baru: "+t.toFixed(1)+" detik!"; }
+      else { $("mFeedback").textContent="Selesai dalam "+t.toFixed(1)+" detik."; }
+      P.cCok++; confettiBurst();
+      addXp(isBest?10:6,"",$("mClock"));
+    }
+  }else{
+    mSelWord.classList.add("wrong"); mSelMean.classList.add("wrong"); sndBad();
+    setTimeout(()=>{
+      mSelWord.classList.remove("wrong"); mSelMean.classList.remove("wrong");
+      mSelWord.removeAttribute("data-sel"); mSelMean.removeAttribute("data-sel");
+      mSelWord=mSelMean=null;
+    },420);
+  }
+}
+$("mReset").addEventListener("click", buildMatch);
+
+/* ===================== SUSUN KALIMAT ===================== */
+let sbCur=null, sbHinted=false;
+function chipMove(c,to){ to.appendChild(c); }
+function makeChip(word){
+  const c=document.createElement("button");
+  c.className="chip"; c.textContent=word;
+  c.onclick=()=>{ sndTap(); chipMove(c, c.parentElement===$("sbBank") ? $("sbDrop") : $("sbBank")); $("sbDrop").classList.remove("ok"); };
+  return c;
+}
+function newSentence(){
+  sbCur=SENTENCES[rnd(SENTENCES.length)]; sbHinted=false;
+  $("sbHint").textContent=sbCur.id;
+  $("sbDrop").innerHTML=""; $("sbDrop").classList.remove("ok");
+  $("sbFeedback").textContent="";
+  const bank=$("sbBank"); bank.innerHTML="";
+  shuffle(sbCur.en.split(" ")).forEach(w=>bank.appendChild(makeChip(w)));
+}
+$("sbCheck").addEventListener("click",e=>{
+  const built=[...$("sbDrop").children].map(c=>c.textContent).join(" ");
+  if(!built){$("sbFeedback").textContent="Susun dulu kalimatnya — ketuk kata di bawah."; return;}
+  if(norm(built)===norm(sbCur.en)){
+    $("sbDrop").classList.add("ok");
+    $("sbFeedback").textContent="Tepat. "+sbCur.en+".";
+    P.cKal++; sndGood(); addXp(sbHinted?3:6,"Kalimat tersusun benar.",e.currentTarget);
+    say(sbCur.en,0.95);
+    setTimeout(newSentence,2400);
+  }else{
+    sndBad();
+    const right=sbCur.en.split(" "), got=[...$("sbDrop").children].map(c=>c.textContent);
+    let i=0; while(i<got.length&&norm(got[i])===norm(right[i]||"")) i++;
+    $("sbFeedback").textContent = i===0
+      ? "Belum pas. Kata pertamanya bukan “"+got[0]+"”."
+      : i+" kata pertama sudah benar, koreksi mulai dari kata ke-"+(i+1)+".";
+  }
+});
+$("sbClear").addEventListener("click",()=>{
+  [...$("sbDrop").children].forEach(c=>chipMove(c,$("sbBank")));
+  $("sbDrop").classList.remove("ok"); $("sbFeedback").textContent="";
+});
+$("sbHintBtn").addEventListener("click",()=>{
+  sbHinted=true;
+  $("sbFeedback").textContent="Awalannya: “"+sbCur.en.split(" ").slice(0,3).join(" ")+"…”";
+});
+$("sbNext").addEventListener("click",newSentence);
+newSentence();
+
+/* ===================== DENGAR ===================== */
+const wave=$("wave");
+for(let i=0;i<28;i++){wave.appendChild(document.createElement("b"));}
+let lsCur=LISTEN[rnd(LISTEN.length)];
+function play(rate){ wave.classList.add("on"); say(lsCur,rate,()=>wave.classList.remove("on")); }
+$("lsPlay").addEventListener("click",()=>play(1));
+$("lsSlow").addEventListener("click",()=>play(0.6));
+$("lsNext").addEventListener("click",()=>{
+  lsCur=LISTEN[rnd(LISTEN.length)];
+  $("lsInput").value=""; $("lsFeedback").innerHTML=""; play(1);
+});
+$("lsCheck").addEventListener("click",checkListen);
+$("lsInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkListen();});
+function checkListen(){
+  const val=$("lsInput").value;
+  if(!norm(val)){$("lsFeedback").textContent="Tulis dulu kalimat yang kamu dengar."; return;}
+  const a=norm(lsCur).split(" "), b=norm(val).split(" ");
+  if(norm(val)===norm(lsCur)){
+    $("lsFeedback").textContent="Persis. "+lsCur;
+    P.cDen++; sndGood(); addXp(7,"Pendengaranmu tajam.",$("lsCheck"));
+    setTimeout(()=>$("lsNext").click(),2200);
+    return;
+  }
+  sndBad();
+  let hit=0, html="";
+  a.forEach((w,i)=>{
+    const ok=b[i]===w; if(ok)hit++;
+    html+='<span class="'+(ok?"hit":"miss")+'">'+(ok?w:"•".repeat(w.length))+'</span> ';
+  });
+  $("lsFeedback").innerHTML=hit+" dari "+a.length+" kata sudah benar:<br>"+html;
+}
+
+/* ===================== TEMA & RESET ===================== */
+try{const s=localStorage.getItem("affan.theme"); if(s)document.documentElement.setAttribute("data-theme",s);}catch(e){}
+$("themeBtn").addEventListener("click",()=>{
+  const cur=document.documentElement.getAttribute("data-theme");
+  const dark = cur ? cur==="dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  const next = dark?"light":"dark";
+  document.documentElement.setAttribute("data-theme",next);
+  try{localStorage.setItem("affan.theme",next);}catch(e){}
+});
+$("resetBtn").addEventListener("click",()=>{
+  P={xp:0,streak:1,lastDay:new Date().toDateString(),learned:[],totalLearned:0,qRight:0,qTotal:0,
+     cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,bestMatch:null,badges:[]};
+  save(); renderBadges(); newQuiz(); newSentence(); fcIdx=0; drawCard(); buildMatch();
+  toast("Progres dikosongkan. Mulai lagi dari awal.");
+});
+
+load(); render(); renderBadges(); drawCard(); route();
+</script>
+</body>
+</html>
