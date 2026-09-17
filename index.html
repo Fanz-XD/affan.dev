@@ -14,8 +14,8 @@
   --mark:#FFD84D;
   --accent:#2F5BEA; --accent-ink:#FFFFFF;
   --good:#0E8F6F; --bad:#D6455B;
-  --shadow:0 20px 44px -26px rgba(27,36,64,.5);
-  --r:18px;
+  --shadow:0 10px 24px -18px rgba(27,36,64,.35);
+  --r:16px;
   --sans:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
   --serif:"Newsreader",Georgia,serif;
 }
@@ -25,7 +25,7 @@
     --ink:#E9EDF9; --muted:#9CA8C8; --line:#2B3762; --mark:#E6B93F;
     --accent:#8AA4FF; --accent-ink:#0E1426;
     --good:#4CC79F; --bad:#F1798B;
-    --shadow:0 20px 44px -24px rgba(0,0,0,.75);
+    --shadow:0 10px 24px -16px rgba(0,0,0,.6);
   }
 }
 :root[data-theme="dark"]{
@@ -33,29 +33,38 @@
   --ink:#E9EDF9; --muted:#9CA8C8; --line:#2B3762; --mark:#E6B93F;
   --accent:#8AA4FF; --accent-ink:#0E1426;
   --good:#4CC79F; --bad:#F1798B;
-  --shadow:0 20px 44px -24px rgba(0,0,0,.75);
+  --shadow:0 10px 24px -16px rgba(0,0,0,.6);
 }
 
 /* aksen per halaman (terang) */
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]) body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="tatabahasa"]{--accent:#3D6BD1;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="percakapan"]{--accent:#C1682F;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="cocokkan"]{--accent:#B5459A;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="kalimat"]{--accent:#12876A;--accent-ink:#FFFFFF}
+  :root:not([data-theme="dark"]) body[data-page="membaca"]{--accent:#1E7A8C;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="dengar"]{--accent:#7A45D6;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
 }
 body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
+body[data-page="tatabahasa"]{--accent:#3D6BD1;--accent-ink:#FFFFFF}
+body[data-page="percakapan"]{--accent:#C1682F;--accent-ink:#FFFFFF}
 body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
 body[data-page="cocokkan"]{--accent:#B5459A;--accent-ink:#FFFFFF}
 body[data-page="kalimat"]{--accent:#12876A;--accent-ink:#FFFFFF}
+body[data-page="membaca"]{--accent:#1E7A8C;--accent-ink:#FFFFFF}
 body[data-page="dengar"]{--accent:#7A45D6;--accent-ink:#FFFFFF}
 body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
 /* aksen per halaman (gelap) */
 :root[data-theme="dark"] body[data-page="kosakata"],:root:not([data-theme="light"]) body[data-page="kosakata"]{--accent:#EAB149;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="tatabahasa"],:root:not([data-theme="light"]) body[data-page="tatabahasa"]{--accent:#8AA4FF;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="percakapan"],:root:not([data-theme="light"]) body[data-page="percakapan"]{--accent:#F2A46B;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="kuis"],:root:not([data-theme="light"]) body[data-page="kuis"]{--accent:#8AA4FF;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="cocokkan"],:root:not([data-theme="light"]) body[data-page="cocokkan"]{--accent:#E793D2;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="kalimat"],:root:not([data-theme="light"]) body[data-page="kalimat"]{--accent:#4CC79F;--accent-ink:#0E1426}
+:root[data-theme="dark"] body[data-page="membaca"],:root:not([data-theme="light"]) body[data-page="membaca"]{--accent:#5FD0E3;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="dengar"],:root:not([data-theme="light"]) body[data-page="dengar"]{--accent:#B392FF;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="progres"],:root:not([data-theme="light"]) body[data-page="progres"]{--accent:#FF8FA6;--accent-ink:#0E1426}
 
@@ -218,6 +227,19 @@ input[type=text]::placeholder{color:var(--muted)}
 .badge .ic{font-size:26px;display:block;margin-bottom:6px}
 .badge .lb{font-size:12.5px;font-weight:700}
 
+/* percakapan */
+.phrase{padding:10px 0 22px;text-align:left}
+.phrase h4{font-size:30px;margin:0 0 10px;letter-spacing:-.02em}
+.phrase .m{font-family:var(--serif);font-size:18px;margin:0 0 8px}
+.phrase .ex{font-family:var(--serif);font-size:15.5px;color:var(--muted)}
+
+/* membaca */
+.rd-text{font-family:var(--serif);font-size:18px;line-height:1.75;max-width:64ch;margin:0 0 22px}
+.rd-q{margin-bottom:18px}
+.rd-q p{font-weight:600;margin:0 0 10px;font-size:15.5px}
+.rd-q .opt{width:100%;margin-bottom:8px}
+.rd-q .opt:last-child{margin-bottom:0}
+
 #toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:12px;font-size:15px;z-index:90;transition:opacity .25s,transform .25s;max-width:88vw;text-align:center}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 .xpfly{position:fixed;z-index:95;font-weight:800;color:var(--good);pointer-events:none;animation:fly 1s ease-out forwards}
@@ -233,11 +255,13 @@ input[type=text]::placeholder{color:var(--muted)}
   .side-foot{margin-left:auto;margin-top:0}
   main{padding:26px 18px 112px}
   .tabbar{
-    display:grid;grid-template-columns:repeat(6,1fr);position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:2px;position:fixed;left:0;right:0;bottom:0;z-index:50;
     background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(12px);
-    border-top:1px solid var(--line);padding:7px 4px calc(7px + env(safe-area-inset-bottom));
+    border-top:1px solid var(--line);padding:7px 6px calc(7px + env(safe-area-inset-bottom));
+    scrollbar-width:none;
   }
-  .tab{text-align:center;text-decoration:none;color:var(--muted);font-size:10.5px;font-weight:600;padding:5px 1px;border-radius:10px}
+  .tabbar::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;min-width:64px;text-align:center;text-decoration:none;color:var(--muted);font-size:10.5px;font-weight:600;padding:5px 6px;border-radius:10px}
   .tab em{display:block;font-size:16px;font-style:normal;margin-bottom:2px}
   .tab.active{color:var(--accent)}
 }
@@ -253,9 +277,12 @@ input[type=text]::placeholder{color:var(--muted)}
     <a class="logo" href="#/beranda">affan<b>.dev</b></a>
     <a class="navlink" data-nav="beranda" href="#/beranda"><i class="dot"></i>Beranda</a>
     <a class="navlink" data-nav="kosakata" href="#/kosakata"><i class="dot"></i>Kartu kosakata</a>
+    <a class="navlink" data-nav="tatabahasa" href="#/tatabahasa"><i class="dot"></i>Tata bahasa</a>
+    <a class="navlink" data-nav="percakapan" href="#/percakapan"><i class="dot"></i>Percakapan</a>
     <a class="navlink" data-nav="kuis" href="#/kuis"><i class="dot"></i>Kuis</a>
     <a class="navlink" data-nav="cocokkan" href="#/cocokkan"><i class="dot"></i>Cocokkan</a>
     <a class="navlink" data-nav="kalimat" href="#/kalimat"><i class="dot"></i>Susun kalimat</a>
+    <a class="navlink" data-nav="membaca" href="#/membaca"><i class="dot"></i>Membaca</a>
     <a class="navlink" data-nav="dengar" href="#/dengar"><i class="dot"></i>Dengar &amp; tulis</a>
     <a class="navlink" data-nav="progres" href="#/progres"><i class="dot"></i>Progres</a>
     <div class="side-foot">
@@ -270,12 +297,20 @@ input[type=text]::placeholder{color:var(--muted)}
     <section class="page on" id="p-beranda">
       <p class="eyebrow">Selasa yang bagus untuk latihan</p>
       <h1>Bahasa Inggris yang <span class="mark"><span>nempel</span></span>, bukan cuma dihafal.</h1>
-      <p class="lede">Lima latihan pendek, masing-masing punya halaman sendiri. Pilih satu, lima menit, selesai.</p>
+      <p class="lede">Delapan latihan pendek, masing-masing punya halaman sendiri. Pilih satu, lima menit, selesai.</p>
 
       <div class="tiles">
         <a class="tile" href="#/kosakata" style="--c:#C8871B"><i></i>
           <h3>Kartu kosakata</h3><p>Geser kartu, balik untuk lihat arti, coba ucapkan kerasnya.</p>
           <div class="bar"><u id="tKos"></u></div>
+        </a>
+        <a class="tile" href="#/tatabahasa" style="--c:#3D6BD1"><i></i>
+          <h3>Tata bahasa</h3><p>Soal rumpang untuk melatih tenses, preposisi, dan artikel.</p>
+          <div class="bar"><u id="tTat"></u></div>
+        </a>
+        <a class="tile" href="#/percakapan" style="--c:#C1682F"><i></i>
+          <h3>Percakapan</h3><p>Frasa sehari-hari lengkap dengan cara mengucapkannya.</p>
+          <div class="bar"><u id="tPer"></u></div>
         </a>
         <a class="tile" href="#/kuis" style="--c:#2F5BEA"><i></i>
           <h3>Kuis</h3><p>Enam soal campuran arti kata dan kalimat rumpang.</p>
@@ -288,6 +323,10 @@ input[type=text]::placeholder{color:var(--muted)}
         <a class="tile" href="#/kalimat" style="--c:#12876A"><i></i>
           <h3>Susun kalimat</h3><p>Latih urutan kata yang sering terbalik saat menerjemahkan.</p>
           <div class="bar"><u id="tKal"></u></div>
+        </a>
+        <a class="tile" href="#/membaca" style="--c:#1E7A8C"><i></i>
+          <h3>Membaca</h3><p>Teks pendek, lalu jawab beberapa pertanyaan pemahaman.</p>
+          <div class="bar"><u id="tBac"></u></div>
         </a>
         <a class="tile" href="#/dengar" style="--c:#7A45D6"><i></i>
           <h3>Dengar &amp; tulis</h3><p>Kalimat dibacakan, kamu tulis. Cek per kata.</p>
@@ -307,7 +346,7 @@ input[type=text]::placeholder{color:var(--muted)}
 
     <!-- ============ KOSAKATA ============ -->
     <section class="page" id="p-kosakata">
-      <p class="eyebrow">Latihan 1 dari 5</p>
+      <p class="eyebrow">Latihan 1 dari 8</p>
       <h1>Kartu kosakata</h1>
       <p class="lede">Tebak artinya dulu, ketuk kartu untuk membalik. Geser untuk pindah kata, atau coba ucapkan kerasnya.</p>
 
@@ -338,9 +377,49 @@ input[type=text]::placeholder{color:var(--muted)}
       <p class="mic-fb" id="fcMicFb"></p>
     </section>
 
+    <!-- ============ TATA BAHASA ============ -->
+    <section class="page" id="p-tatabahasa">
+      <p class="eyebrow">Latihan 2 dari 8</p>
+      <h1>Tata bahasa</h1>
+      <p class="lede">Lengkapi kalimat dengan pilihan yang paling tepat — tenses, preposisi, artikel, dan perbandingan.</p>
+
+      <div class="panel">
+        <div class="progress"><u id="gBar"></u></div>
+        <div class="qmeta"><span id="gPosLbl">Soal 1 dari 10</span><span id="gScoreLbl">Benar beruntun: 0</span></div>
+        <p class="q" id="gText">Memuat soal…</p>
+        <div class="opts" id="gOpts"></div>
+        <p class="feedback" id="gFeedback"></p>
+      </div>
+    </section>
+
+    <!-- ============ PERCAKAPAN ============ -->
+    <section class="page" id="p-percakapan">
+      <p class="eyebrow">Latihan 3 dari 8</p>
+      <h1>Percakapan &amp; frasa</h1>
+      <p class="lede">Frasa yang sering dipakai dalam percakapan santai. Dengarkan, lalu coba ucapkan sendiri.</p>
+
+      <div class="pips" id="prPips"></div>
+      <div class="panel">
+        <p class="tiny" id="prCount">—</p>
+        <div class="phrase">
+          <h4 id="prPhrase">—</h4>
+          <p class="m" id="prMeaning">—</p>
+          <p class="ex" id="prExample">—</p>
+        </div>
+        <div class="row">
+          <button class="btn ghost" id="prPrev">← Sebelumnya</button>
+          <button class="btn ghost" id="prNext">Berikutnya →</button>
+          <button class="btn ghost" id="prSpeak">▶ Dengar</button>
+          <button class="btn ghost" id="prMic">🎤 Coba ucapkan</button>
+          <button class="btn" id="prKnow">Sudah lancar</button>
+        </div>
+        <p class="mic-fb" id="prMicFb"></p>
+      </div>
+    </section>
+
     <!-- ============ KUIS ============ -->
     <section class="page" id="p-kuis">
-      <p class="eyebrow">Latihan 2 dari 5</p>
+      <p class="eyebrow">Latihan 4 dari 8</p>
       <h1>Kuis</h1>
       <p class="lede">Jawab dengan mengetuk pilihan, atau tekan tombol 1–4 di papan ketik.</p>
 
@@ -355,7 +434,7 @@ input[type=text]::placeholder{color:var(--muted)}
 
     <!-- ============ COCOKKAN ============ -->
     <section class="page" id="p-cocokkan">
-      <p class="eyebrow">Latihan 3 dari 5</p>
+      <p class="eyebrow">Latihan 5 dari 8</p>
       <h1>Cocokkan</h1>
       <p class="lede">Ketuk satu kata di kiri, lalu artinya di kanan. Selesaikan semua pasangan secepat mungkin.</p>
 
@@ -377,7 +456,7 @@ input[type=text]::placeholder{color:var(--muted)}
 
     <!-- ============ SUSUN KALIMAT ============ -->
     <section class="page" id="p-kalimat">
-      <p class="eyebrow">Latihan 4 dari 5</p>
+      <p class="eyebrow">Latihan 6 dari 8</p>
       <h1>Susun kalimat</h1>
       <p class="lede">Urutan kata bahasa Inggris sering beda dengan bahasa Indonesia. Latih polanya di sini.</p>
 
@@ -396,9 +475,28 @@ input[type=text]::placeholder{color:var(--muted)}
       </div>
     </section>
 
+    <!-- ============ MEMBACA ============ -->
+    <section class="page" id="p-membaca">
+      <p class="eyebrow">Latihan 7 dari 8</p>
+      <h1>Membaca</h1>
+      <p class="lede">Baca teks pendek, lalu jawab pertanyaan pemahamannya.</p>
+
+      <div class="panel">
+        <p class="tiny" id="rdCount">—</p>
+        <h3 id="rdTitle" style="margin:2px 0 12px;letter-spacing:-.02em">—</h3>
+        <p class="rd-text" id="rdText">—</p>
+        <div id="rdQs"></div>
+        <div class="row">
+          <button class="btn" id="rdCheck">Periksa jawaban</button>
+          <button class="btn ghost" id="rdNext">Teks lain</button>
+        </div>
+        <p class="feedback" id="rdFeedback"></p>
+      </div>
+    </section>
+
     <!-- ============ DENGAR ============ -->
     <section class="page" id="p-dengar">
-      <p class="eyebrow">Latihan 5 dari 5</p>
+      <p class="eyebrow">Latihan 8 dari 8</p>
       <h1>Dengar &amp; tulis</h1>
       <p class="lede">Kalimat dibacakan suara bawaan perangkatmu. Putar sepelan yang kamu butuh, lalu tulis yang kamu dengar.</p>
 
@@ -437,9 +535,12 @@ input[type=text]::placeholder{color:var(--muted)}
 
         <div class="skills">
           <div class="skill"><span>Kosakata</span><div class="track"><u id="bKos"></u></div><span id="nKos">0</span></div>
+          <div class="skill"><span>Tata bahasa</span><div class="track"><u id="bTat"></u></div><span id="nTat">0</span></div>
+          <div class="skill"><span>Percakapan</span><div class="track"><u id="bPer"></u></div><span id="nPer">0</span></div>
           <div class="skill"><span>Kuis</span><div class="track"><u id="bKui"></u></div><span id="nKui">0</span></div>
           <div class="skill"><span>Cocokkan</span><div class="track"><u id="bCok"></u></div><span id="nCok">0</span></div>
           <div class="skill"><span>Susun kalimat</span><div class="track"><u id="bKal"></u></div><span id="nKal">0</span></div>
+          <div class="skill"><span>Membaca</span><div class="track"><u id="bBac"></u></div><span id="nBac">0</span></div>
           <div class="skill"><span>Dengar</span><div class="track"><u id="bDen"></u></div><span id="nDen">0</span></div>
         </div>
 
@@ -457,10 +558,14 @@ input[type=text]::placeholder{color:var(--muted)}
 <nav class="tabbar">
   <a class="tab" data-nav="beranda" href="#/beranda"><em>⌂</em>Beranda</a>
   <a class="tab" data-nav="kosakata" href="#/kosakata"><em>▤</em>Kartu</a>
+  <a class="tab" data-nav="tatabahasa" href="#/tatabahasa"><em>✎</em>Tata bhs</a>
+  <a class="tab" data-nav="percakapan" href="#/percakapan"><em>💬</em>Frasa</a>
   <a class="tab" data-nav="kuis" href="#/kuis"><em>◎</em>Kuis</a>
   <a class="tab" data-nav="cocokkan" href="#/cocokkan"><em>⇌</em>Cocok</a>
   <a class="tab" data-nav="kalimat" href="#/kalimat"><em>⇄</em>Kalimat</a>
+  <a class="tab" data-nav="membaca" href="#/membaca"><em>📖</em>Baca</a>
   <a class="tab" data-nav="dengar" href="#/dengar"><em>♪</em>Dengar</a>
+  <a class="tab" data-nav="progres" href="#/progres"><em>◔</em>Progres</a>
 </nav>
 
 <div id="toast" role="status" aria-live="polite"></div>
@@ -479,7 +584,13 @@ const VOCAB = [
   {w:"curious", ipa:"/ˈkjʊəriəs/", pos:"kata sifat", m:"penasaran; ingin tahu", ex:"I am curious about how it works."},
   {w:"borrow", ipa:"/ˈbɒrəʊ/", pos:"kata kerja", m:"meminjam dari orang lain", ex:"Can I borrow your charger for a minute?"},
   {w:"attend", ipa:"/əˈtend/", pos:"kata kerja", m:"menghadiri", ex:"I attend an online class every Tuesday."},
-  {w:"gentle", ipa:"/ˈdʒentl/", pos:"kata sifat", m:"lembut; tidak kasar", ex:"Please be gentle with the old book."}
+  {w:"gentle", ipa:"/ˈdʒentl/", pos:"kata sifat", m:"lembut; tidak kasar", ex:"Please be gentle with the old book."},
+  {w:"achieve", ipa:"/əˈtʃiːv/", pos:"kata kerja", m:"mencapai; berhasil melakukan", ex:"She achieved her goal after months of practice."},
+  {w:"available", ipa:"/əˈveɪləbl/", pos:"kata sifat", m:"tersedia; bisa digunakan", ex:"Is this seat available?"},
+  {w:"convince", ipa:"/kənˈvɪns/", pos:"kata kerja", m:"meyakinkan", ex:"I couldn't convince him to come."},
+  {w:"decision", ipa:"/dɪˈsɪʒn/", pos:"kata benda", m:"keputusan", ex:"It was a difficult decision to make."},
+  {w:"encourage", ipa:"/ɪnˈkʌrɪdʒ/", pos:"kata kerja", m:"mendorong; memberi semangat", ex:"My teacher always encourages me to speak up."},
+  {w:"opportunity", ipa:"/ˌɒpərˈtjuːnəti/", pos:"kata benda", m:"kesempatan; peluang", ex:"This is a great opportunity for you."}
 ];
 const SENTENCES = [
   {en:"I have been learning English for two years", id:"Saya sudah belajar bahasa Inggris selama dua tahun."},
@@ -488,7 +599,10 @@ const SENTENCES = [
   {en:"He did not answer my message last night", id:"Dia tidak membalas pesan saya tadi malam."},
   {en:"Could you explain that one more time", id:"Bisakah kamu menjelaskannya sekali lagi?"},
   {en:"There is a small cafe near my house", id:"Ada kafe kecil di dekat rumah saya."},
-  {en:"I will call you after the meeting ends", id:"Saya akan menelepon kamu setelah rapat selesai."}
+  {en:"I will call you after the meeting ends", id:"Saya akan menelepon kamu setelah rapat selesai."},
+  {en:"They have not decided yet", id:"Mereka belum memutuskan."},
+  {en:"Can you send me the file", id:"Bisakah kamu kirimkan saya berkasnya?"},
+  {en:"It was raining all day yesterday", id:"Hujan turun sepanjang hari kemarin."}
 ];
 const LISTEN = [
   "The meeting starts at nine in the morning.",
@@ -496,7 +610,49 @@ const LISTEN = [
   "She has already finished her homework.",
   "We need to leave before it gets dark.",
   "Do you know how far the station is?",
-  "This is the best coffee I have ever tried."
+  "This is the best coffee I have ever tried.",
+  "Can you help me find the nearest station?",
+  "He usually wakes up before six in the morning.",
+  "Please remember to bring your umbrella today.",
+  "They will arrive at the airport in an hour."
+];
+const GRAMMAR = [
+  {q:"I ___ coffee every morning.", opts:["drink","drinks","drinking","drank"], a:0, note:"Present simple: subjek I/you/we/they memakai kata kerja dasar (V1)."},
+  {q:"She ___ to the gym twice a week.", opts:["go","goes","going","went"], a:1, note:"Subjek orang ketiga tunggal (she/he/it) → kata kerja ditambah -s/-es."},
+  {q:"Look! It ___ outside.", opts:["rain","rains","is raining","rained"], a:2, note:"Present continuous (is/am/are + V-ing) untuk kejadian yang sedang berlangsung sekarang."},
+  {q:"I ___ my homework already.", opts:["finish","finished","have finished","finishing"], a:2, note:"Present perfect (have/has + V3) untuk hal yang baru selesai dan masih relevan sekarang."},
+  {q:"We went to Bali ___ last summer.", opts:["in","on","at","for"], a:0, note:"Preposisi 'in' dipakai untuk bulan, musim, atau tahun."},
+  {q:"The meeting is ___ 3 PM.", opts:["in","on","at","for"], a:2, note:"Preposisi 'at' dipakai untuk jam atau waktu spesifik."},
+  {q:"This is ___ easiest question in the test.", opts:["a","an","the","—"], a:2, note:"Gunakan 'the' pada bentuk superlatif (paling ...)."},
+  {q:"She is ___ than her sister.", opts:["tall","taller","tallest","more tall"], a:1, note:"Perbandingan kata sifat pendek: tambahkan -er (comparative)."},
+  {q:"There ___ some books on the table.", opts:["is","are","was","be"], a:1, note:"'Some books' berbentuk jamak, jadi memakai 'are'."},
+  {q:"I ___ finished my report by tomorrow.", opts:["will have","have","had","will"], a:0, note:"Future perfect (will have + V3) untuk hal yang akan selesai sebelum waktu tertentu di masa depan."}
+];
+const PHRASES = [
+  {p:"How's it going?", m:"Bagaimana kabarnya? — sapaan santai ke teman.", ex:"— How's it going? — Pretty good, thanks!"},
+  {p:"Nice to meet you.", m:"Senang bertemu denganmu, dipakai saat berkenalan pertama kali.", ex:"Nice to meet you. I'm Sarah."},
+  {p:"Could you repeat that, please?", m:"Bisa tolong diulangi ucapannya?", ex:"Sorry, could you repeat that, please?"},
+  {p:"I'm on my way.", m:"Aku sedang dalam perjalanan.", ex:"Don't worry, I'm on my way."},
+  {p:"Let's grab a coffee sometime.", m:"Ayo ngopi bareng kapan-kapan.", ex:"We should catch up — let's grab a coffee sometime."},
+  {p:"Take your time.", m:"Santai saja, tidak perlu buru-buru.", ex:"No rush, take your time."},
+  {p:"It's up to you.", m:"Terserah kamu.", ex:"We can go either way, it's up to you."},
+  {p:"I'll get back to you.", m:"Aku akan kabari kamu nanti.", ex:"Let me check and I'll get back to you."},
+  {p:"Sounds good.", m:"Kedengarannya bagus, tanda setuju.", ex:"Meet at 5? — Sounds good."},
+  {p:"No worries.", m:"Tidak apa-apa, santai saja.", ex:"Sorry I'm late! — No worries."}
+];
+const READING = [
+  {title:"A Quiet Morning", text:"Maya wakes up early every day. She likes the quiet streets before the city gets busy. After a short walk, she makes a cup of tea and reads for twenty minutes before work.",
+    qs:[{q:"When does Maya wake up?", opts:["Late at night","Early in the morning","At noon"], a:1},
+        {q:"What does she do before work?", opts:["She goes swimming","She makes tea and reads","She calls her friend"], a:1}]},
+  {title:"The New Job", text:"Farid started a new job last month. At first he was nervous, but his coworkers were friendly and helpful. Now he feels more confident and even enjoys the morning meetings.",
+    qs:[{q:"How did Farid feel at first?", opts:["Confident","Nervous","Angry"], a:1},
+        {q:"How does he feel now?", opts:["He feels more confident","He wants to quit","He feels bored"], a:0}]},
+  {title:"Weekend Plans", text:"Rina and her brother are planning a trip to the mountains this weekend. They will leave early on Saturday and come back on Sunday evening. They still need to pack warm clothes because it gets cold at night.",
+    qs:[{q:"Where are they going?", opts:["To the beach","To the mountains","To another city"], a:1},
+        {q:"Why do they need warm clothes?", opts:["Because it rains a lot","Because it gets cold at night","Because they will swim"], a:1}]},
+  {title:"A Small Cafe", text:"There is a small cafe near Dimas's office. He goes there almost every afternoon for a short break. The owner always remembers his order, which makes him feel welcome.",
+    qs:[{q:"Where is the cafe?", opts:["Near his house","Near his office","Near the airport"], a:1},
+        {q:"Why does Dimas feel welcome?", opts:["The coffee is free","The owner remembers his order","The cafe is very big"], a:1}]}
 ];
 const BADGES = [
   {id:"first5", ic:"🌱", lb:"5 kata hafal", test:p=>p.learned.length>=5 || p.totalLearned>=5},
@@ -504,7 +660,10 @@ const BADGES = [
   {id:"streak3", ic:"🔥", lb:"3 hari beruntun", test:p=>p.streak>=3},
   {id:"match60", ic:"⚡", lb:"Cocokkan di bawah 1 menit", test:p=>p.bestMatch!=null && p.bestMatch<=60},
   {id:"goal", ic:"🏆", lb:"Target harian tercapai", test:p=>p.xp>=60},
-  {id:"allround", ic:"🧩", lb:"Coba semua latihan", test:p=>p.cKos>0&&p.cKui>0&&p.cKal>0&&p.cDen>0&&p.cCok>0}
+  {id:"grammarpro", ic:"📘", lb:"5 soal tata bahasa benar", test:p=>p.cTat>=5},
+  {id:"chatty", ic:"💬", lb:"5 frasa dikuasai", test:p=>p.cPer>=5},
+  {id:"reader", ic:"📖", lb:"3 teks bacaan selesai", test:p=>p.cBac>=3},
+  {id:"allround", ic:"🧩", lb:"Coba semua latihan", test:p=>p.cKos>0&&p.cKui>0&&p.cKal>0&&p.cDen>0&&p.cCok>0&&p.cTat>0&&p.cPer>0&&p.cBac>0}
 ];
 
 /* ===================== UTIL ===================== */
@@ -583,16 +742,16 @@ function confettiBurst(){
 }
 
 /* ===================== PROGRES ===================== */
-const KEY="affan.progress.v3";
+const KEY="affan.progress.v4";
 let P={xp:0,streak:0,lastDay:null,learned:[],totalLearned:0,qRight:0,qTotal:0,
-       cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,bestMatch:null,badges:[]};
+       cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,cTat:0,cPer:0,cBac:0,bestMatch:null,badges:[]};
 function load(){
   try{const raw=localStorage.getItem(KEY); if(raw) P=Object.assign(P,JSON.parse(raw));}catch(e){}
   const today=new Date().toDateString();
   if(P.lastDay!==today){
     const y=new Date(Date.now()-86400000).toDateString();
     P.streak = (P.lastDay===y) ? P.streak+1 : 1;
-    P.lastDay=today; P.learned=[]; P.xp=0; P.cKos=P.cKui=P.cKal=P.cDen=P.cCok=0;
+    P.lastDay=today; P.learned=[]; P.xp=0; P.cKos=P.cKui=P.cKal=P.cDen=P.cCok=P.cTat=P.cPer=P.cBac=0;
     save();
   }
 }
@@ -627,8 +786,8 @@ function render(){
   const pct=Math.min(1,P.xp/60);
   $("ringFg").style.strokeDashoffset = 351.8*(1-pct);
   $("mBest").textContent = P.bestMatch!=null ? P.bestMatch.toFixed(1)+" dtk" : "—";
-  const caps={cKos:8,cKui:12,cKal:6,cDen:5,cCok:6};
-  const map=[["cKos","bKos","nKos","tKos"],["cKui","bKui","nKui","tKui"],["cKal","bKal","nKal","tKal"],["cDen","bDen","nDen","tDen"],["cCok","bCok","nCok","tCok"]];
+  const caps={cKos:8,cKui:12,cKal:6,cDen:5,cCok:6,cTat:10,cPer:10,cBac:4};
+  const map=[["cKos","bKos","nKos","tKos"],["cKui","bKui","nKui","tKui"],["cKal","bKal","nKal","tKal"],["cDen","bDen","nDen","tDen"],["cCok","bCok","nCok","tCok"],["cTat","bTat","nTat","tTat"],["cPer","bPer","nPer","tPer"],["cBac","bBac","nBac","tBac"]];
   map.forEach(([k,bar,num,tile])=>{
     const w=Math.min(100,P[k]/caps[k]*100);
     $(bar).style.width=w+"%"; $(num).textContent=P[k]; $(tile).style.width=w+"%";
@@ -636,7 +795,7 @@ function render(){
 }
 
 /* ===================== ROUTER ===================== */
-const PAGES=["beranda","kosakata","kuis","cocokkan","kalimat","dengar","progres"];
+const PAGES=["beranda","kosakata","tatabahasa","percakapan","kuis","cocokkan","kalimat","membaca","dengar","progres"];
 function route(){
   let name=(location.hash.replace("#/","")||"beranda");
   if(!PAGES.includes(name)) name="beranda";
@@ -817,6 +976,148 @@ document.addEventListener("keydown",e=>{
 });
 newQuiz();
 
+/* ===================== TATA BAHASA ===================== */
+let gSet=[],gPos=0,gStreak=0,gLocked=false;
+function newGrammar(){ gSet=shuffle(GRAMMAR); gPos=0; gStreak=0; drawG(); }
+function drawG(){
+  gLocked=false; $("gFeedback").textContent="";
+  $("gBar").style.width=(gPos/gSet.length*100)+"%";
+  $("gScoreLbl").textContent="Benar beruntun: "+gStreak;
+  if(gPos>=gSet.length){
+    $("gPosLbl").textContent="Ronde selesai";
+    $("gText").textContent="Ronde selesai. Semua "+gSet.length+" soal sudah dicoba.";
+    $("gOpts").innerHTML="";
+    const b=document.createElement("button"); b.className="btn"; b.textContent="Main ronde baru"; b.onclick=newGrammar;
+    $("gOpts").appendChild(b); $("gBar").style.width="100%";
+    confettiBurst();
+    return;
+  }
+  const q=gSet[gPos];
+  $("gPosLbl").textContent="Soal "+(gPos+1)+" dari "+gSet.length;
+  $("gText").textContent=q.q;
+  $("gOpts").innerHTML="";
+  q.opts.forEach((label,i)=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.innerHTML='<span class="k">'+(i+1)+'</span><span></span>';
+    b.lastChild.textContent=label;
+    b.onclick=()=>answerG(b,i,q);
+    $("gOpts").appendChild(b);
+  });
+}
+function answerG(btn,i,q){
+  if(gLocked)return; gLocked=true;
+  const all=[...$("gOpts").children]; all.forEach(b=>b.disabled=true);
+  if(i===q.a){
+    btn.classList.add("correct"); gStreak++; P.cTat++;
+    $("gFeedback").textContent="Benar. "+q.note;
+    sndGood(); addXp(4,"",btn);
+  }else{
+    btn.classList.add("wrong"); gStreak=0; sndBad();
+    all[q.a].classList.add("correct");
+    $("gFeedback").textContent="Belum tepat. "+q.note;
+    save();
+  }
+  $("gScoreLbl").textContent="Benar beruntun: "+gStreak;
+  setTimeout(()=>{gPos++; drawG();},2200);
+}
+document.addEventListener("keydown",e=>{
+  if(document.body.dataset.page!=="tatabahasa")return;
+  const n=parseInt(e.key,10);
+  if(n>=1&&n<=4){ const b=$("gOpts").children[n-1]; if(b&&!b.disabled)b.click(); }
+});
+
+/* ===================== PERCAKAPAN ===================== */
+let prIdx=0;
+function drawPhrase(){
+  const v=PHRASES[prIdx];
+  $("prPhrase").textContent=v.p; $("prMeaning").textContent=v.m; $("prExample").textContent=v.ex;
+  $("prCount").textContent=(prIdx+1)+" dari "+PHRASES.length;
+  $("prMicFb").textContent=""; $("prMicFb").className="mic-fb";
+  const pips=$("prPips"); pips.innerHTML="";
+  PHRASES.forEach((x,i)=>{
+    const d=document.createElement("i");
+    d.className="pip"+(i<prIdx?" done":"")+(i===prIdx?" now":"");
+    pips.appendChild(d);
+  });
+}
+function goPr(step){ prIdx=(prIdx+step+PHRASES.length)%PHRASES.length; drawPhrase(); }
+$("prNext").addEventListener("click",()=>goPr(1));
+$("prPrev").addEventListener("click",()=>goPr(-1));
+$("prSpeak").addEventListener("click",()=>{const v=PHRASES[prIdx]; say(v.p,0.95);});
+$("prKnow").addEventListener("click",e=>{
+  P.cPer++; sndGood(); addXp(4,"Frasa ditandai lancar.",e.currentTarget);
+  goPr(1);
+});
+const prMicBtn=$("prMic");
+if(!SR){ prMicBtn.disabled=true; prMicBtn.title="Pengenalan suara tidak tersedia di peramban ini"; }
+prMicBtn.addEventListener("click",()=>{
+  if(!SR) return;
+  const rec=new SR(); rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=3;
+  prMicBtn.classList.add("listening"); prMicBtn.textContent="🎙 Mendengarkan…";
+  const fb=$("prMicFb"); fb.textContent="Ucapkan sekarang…"; fb.className="mic-fb";
+  rec.start();
+  rec.onresult=(e)=>{
+    const said = e.results[0][0].transcript.toLowerCase().replace(/[^a-z' ]/g,"").trim();
+    const target = norm(PHRASES[prIdx].p);
+    if(norm(said).includes(target.split(" ")[0]) && said.length>3){
+      fb.textContent="Bagus. Terdengar seperti “"+said+"”."; fb.className="mic-fb ok";
+      sndGood(); addXp(3,"Pengucapan tepat.",prMicBtn);
+    }else{
+      fb.textContent="Terdengar “"+said+"”. Coba sekali lagi."; fb.className="mic-fb bad"; sndBad();
+    }
+  };
+  rec.onerror=()=>{ fb.textContent="Mikrofon tidak dapat diakses."; fb.className="mic-fb bad"; };
+  rec.onend=()=>{ prMicBtn.classList.remove("listening"); prMicBtn.textContent="🎤 Coba ucapkan"; };
+});
+
+/* ===================== MEMBACA ===================== */
+let rdIdx=0, rdPicks=[];
+function drawReading(){
+  const r=READING[rdIdx];
+  $("rdCount").textContent="Teks "+(rdIdx+1)+" dari "+READING.length;
+  $("rdTitle").textContent=r.title; $("rdText").textContent=r.text;
+  $("rdFeedback").textContent=""; rdPicks=new Array(r.qs.length).fill(null);
+  const box=$("rdQs"); box.innerHTML="";
+  r.qs.forEach((q,qi)=>{
+    const wrap=document.createElement("div"); wrap.className="rd-q";
+    const p=document.createElement("p"); p.textContent=q.q; wrap.appendChild(p);
+    q.opts.forEach((label,oi)=>{
+      const b=document.createElement("button"); b.className="opt"; b.type="button";
+      b.innerHTML='<span class="k">'+String.fromCharCode(65+oi)+'</span><span></span>';
+      b.lastChild.textContent=label;
+      b.onclick=()=>{
+        [...wrap.querySelectorAll(".opt")].forEach(x=>x.dataset.sel="");
+        b.dataset.sel="1"; rdPicks[qi]=oi; sndTap();
+        [...wrap.querySelectorAll(".opt")].forEach(x=>x.style.borderColor = x===b?"var(--accent)":"var(--line)");
+      };
+      wrap.appendChild(b);
+    });
+    box.appendChild(wrap);
+  });
+}
+$("rdCheck").addEventListener("click",()=>{
+  const r=READING[rdIdx];
+  if(rdPicks.includes(null)){ $("rdFeedback").textContent="Jawab dulu semua pertanyaan di atas."; return; }
+  let right=0;
+  [...$("rdQs").children].forEach((wrap,qi)=>{
+    const q=r.qs[qi], opts=[...wrap.querySelectorAll(".opt")];
+    opts.forEach((b,oi)=>{
+      b.disabled=true;
+      if(oi===q.a) b.classList.add("correct");
+      else if(oi===rdPicks[qi]) b.classList.add("wrong");
+    });
+    if(rdPicks[qi]===q.a) right++;
+  });
+  P.cBac++;
+  const allRight = right===r.qs.length;
+  $("rdFeedback").textContent = right+" dari "+r.qs.length+" jawaban benar."+(allRight?" Mantap, semuanya tepat!":"");
+  if(allRight){ sndGood(); confettiBurst(); addXp(8,"",$("rdCheck")); }
+  else { sndBad(); addXp(3,"",$("rdCheck")); }
+});
+$("rdNext").addEventListener("click",()=>{
+  rdIdx=(rdIdx+1)%READING.length; drawReading();
+});
+
 /* ===================== COCOKKAN ===================== */
 let matchStarted=false, mTimer=null, mStart=0, mSelWord=null, mSelMean=null, mLeft=0;
 function initMatch(){ matchStarted=true; buildMatch(); }
@@ -970,12 +1271,13 @@ $("themeBtn").addEventListener("click",()=>{
 });
 $("resetBtn").addEventListener("click",()=>{
   P={xp:0,streak:1,lastDay:new Date().toDateString(),learned:[],totalLearned:0,qRight:0,qTotal:0,
-     cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,bestMatch:null,badges:[]};
+     cKos:0,cKui:0,cKal:0,cDen:0,cCok:0,cTat:0,cPer:0,cBac:0,bestMatch:null,badges:[]};
   save(); renderBadges(); newQuiz(); newSentence(); fcIdx=0; drawCard(); buildMatch();
+  newGrammar(); prIdx=0; drawPhrase(); rdIdx=0; drawReading();
   toast("Progres dikosongkan. Mulai lagi dari awal.");
 });
 
-load(); render(); renderBadges(); drawCard(); route();
+load(); render(); renderBadges(); drawCard(); newGrammar(); drawPhrase(); drawReading(); route();
 </script>
 </body>
 </html>
