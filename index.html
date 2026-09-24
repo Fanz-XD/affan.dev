@@ -39,7 +39,6 @@
 /* aksen per halaman (terang) */
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]) body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
-  :root:not([data-theme="dark"]) body[data-page="aikata"]{--accent:#7A45C1;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="tatabahasa"]{--accent:#3D6BD1;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="percakapan"]{--accent:#C1682F;--accent-ink:#FFFFFF}
   :root:not([data-theme="dark"]) body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
@@ -50,7 +49,6 @@
   :root:not([data-theme="dark"]) body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
 }
 body[data-page="kosakata"]{--accent:#B5770F;--accent-ink:#FFFFFF}
-body[data-page="aikata"]{--accent:#7A45C1;--accent-ink:#FFFFFF}
 body[data-page="tatabahasa"]{--accent:#3D6BD1;--accent-ink:#FFFFFF}
 body[data-page="percakapan"]{--accent:#C1682F;--accent-ink:#FFFFFF}
 body[data-page="kuis"]{--accent:#2F5BEA;--accent-ink:#FFFFFF}
@@ -61,7 +59,6 @@ body[data-page="dengar"]{--accent:#7A45D6;--accent-ink:#FFFFFF}
 body[data-page="progres"]{--accent:#C1425C;--accent-ink:#FFFFFF}
 /* aksen per halaman (gelap) */
 :root[data-theme="dark"] body[data-page="kosakata"],:root:not([data-theme="light"]) body[data-page="kosakata"]{--accent:#EAB149;--accent-ink:#0E1426}
-:root[data-theme="dark"] body[data-page="aikata"],:root:not([data-theme="light"]) body[data-page="aikata"]{--accent:#B392FF;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="tatabahasa"],:root:not([data-theme="light"]) body[data-page="tatabahasa"]{--accent:#8AA4FF;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="percakapan"],:root:not([data-theme="light"]) body[data-page="percakapan"]{--accent:#F2A46B;--accent-ink:#0E1426}
 :root[data-theme="dark"] body[data-page="kuis"],:root:not([data-theme="light"]) body[data-page="kuis"]{--accent:#8AA4FF;--accent-ink:#0E1426}
@@ -100,7 +97,7 @@ aside{
 .mini{flex:1;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
 .mini span{display:block;font-size:12.5px;color:var(--muted)}
 .mini b{font-size:19px;letter-spacing:-.02em}
-.icon-btn{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;min-width:42px;height:42px;padding:0 14px;display:grid;place-items:center;font-size:13px;font-weight:700;flex:none}
+.icon-btn{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;width:42px;height:42px;display:grid;place-items:center;font-size:16px;flex:none}
 .icon-btn.off{opacity:.45}
 
 main{padding:38px clamp(20px,4vw,52px) 96px;max-width:960px}
@@ -227,14 +224,8 @@ input[type=text]::placeholder{color:var(--muted)}
 .badge{border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:var(--surface-2);opacity:.35;filter:grayscale(1);transition:opacity .3s,filter .3s,transform .2s}
 .badge.on{opacity:1;filter:none}
 .badge.on:hover{transform:translateY(-3px)}
+.badge .ic{font-size:26px;display:block;margin-bottom:6px}
 .badge .lb{font-size:12.5px;font-weight:700}
-
-/* AI kosakata */
-.aicard{border:1px solid var(--line);border-radius:13px;padding:16px;background:var(--surface-2);animation:pop .22s}
-.aicard.added{opacity:.55}
-.aicard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.aicard-top h4{margin:0 0 4px;font-size:19px;letter-spacing:-.01em}
-.ai-tile{background:linear-gradient(135deg,color-mix(in srgb,#7A45C1 14%,var(--surface)),var(--surface))}
 
 /* percakapan */
 .phrase{padding:10px 0 22px;text-align:left}
@@ -286,7 +277,6 @@ input[type=text]::placeholder{color:var(--muted)}
     <a class="logo" href="#/beranda">affan<b>.dev</b></a>
     <a class="navlink" data-nav="beranda" href="#/beranda"><i class="dot"></i>Beranda</a>
     <a class="navlink" data-nav="kosakata" href="#/kosakata"><i class="dot"></i>Kartu kosakata</a>
-    <a class="navlink" data-nav="aikata" href="#/aikata"><i class="dot"></i>Kosakata AI</a>
     <a class="navlink" data-nav="tatabahasa" href="#/tatabahasa"><i class="dot"></i>Tata bahasa</a>
     <a class="navlink" data-nav="percakapan" href="#/percakapan"><i class="dot"></i>Percakapan</a>
     <a class="navlink" data-nav="kuis" href="#/kuis"><i class="dot"></i>Kuis</a>
@@ -297,7 +287,7 @@ input[type=text]::placeholder{color:var(--muted)}
     <a class="navlink" data-nav="progres" href="#/progres"><i class="dot"></i>Progres</a>
     <div class="side-foot">
       <div class="mini"><span>Poin hari ini</span><b id="miniXp">0</b></div>
-      <button class="icon-btn" id="soundBtn" aria-label="Nyala/matikan efek suara">Suara</button>
+      <button class="icon-btn" id="soundBtn" aria-label="Nyala/matikan efek suara">♪</button>
       <button class="icon-btn" id="themeBtn" aria-label="Ganti tema terang atau gelap">◐</button>
     </div>
   </aside>
@@ -313,9 +303,6 @@ input[type=text]::placeholder{color:var(--muted)}
         <a class="tile" href="#/kosakata" style="--c:#C8871B"><i></i>
           <h3>Kartu kosakata</h3><p>Geser kartu, balik untuk lihat arti, coba ucapkan kerasnya.</p>
           <div class="bar"><u id="tKos"></u></div>
-        </a>
-        <a class="tile ai-tile" href="#/aikata" style="--c:#7A45C1"><i></i>
-          <h3>Kosakata AI</h3><p>Minta AI membuatkan kata baru sesuai topik yang kamu pilih.</p>
         </a>
         <a class="tile" href="#/tatabahasa" style="--c:#3D6BD1"><i></i>
           <h3>Tata bahasa</h3><p>Soal rumpang untuk melatih tenses, preposisi, dan artikel.</p>
@@ -383,30 +370,11 @@ input[type=text]::placeholder{color:var(--muted)}
         <button class="btn ghost" id="fcPrev">← Sebelumnya</button>
         <button class="btn ghost" id="fcNext">Berikutnya →</button>
         <button class="btn ghost" id="fcSpeak">▶ Dengar</button>
-        <button class="btn ghost" id="fcMic">Coba ucapkan</button>
+        <button class="btn ghost" id="fcMic">🎤 Coba ucapkan</button>
         <button class="btn" id="fcKnow">Sudah hafal</button>
         <span class="tiny" id="fcCount" style="margin-left:auto"></span>
       </div>
       <p class="mic-fb" id="fcMicFb"></p>
-    </section>
-
-    <!-- ============ AI KOSAKATA ============ -->
-    <section class="page" id="p-aikata">
-      <p class="eyebrow">Fitur baru</p>
-      <h1>Kosakata dengan AI</h1>
-      <p class="lede">Ketik topik yang kamu suka — mis. kerja, kuliner, traveling — dan AI akan membuatkan kosakata baru lengkap dengan arti dan contoh kalimat. Kata yang kamu suka bisa langsung ditambahkan ke kartu kosakata.</p>
-
-      <div class="panel">
-        <div class="row" style="margin-bottom:6px">
-          <input type="text" id="aiTopic" placeholder="Topik, mis. travel, kerja, kuliner…" autocomplete="off">
-          <button class="btn" id="aiGen">Buat kosakata</button>
-        </div>
-        <p class="tiny" id="aiStatus" style="min-height:18px;margin:6px 0 16px"></p>
-        <div id="aiList" style="display:grid;gap:12px"></div>
-        <div class="row" id="aiActions" style="margin-top:16px;display:none">
-          <button class="btn ghost" id="aiAddAll">Tambah semua ke kartu kosakata</button>
-        </div>
-      </div>
     </section>
 
     <!-- ============ TATA BAHASA ============ -->
@@ -442,7 +410,7 @@ input[type=text]::placeholder{color:var(--muted)}
           <button class="btn ghost" id="prPrev">← Sebelumnya</button>
           <button class="btn ghost" id="prNext">Berikutnya →</button>
           <button class="btn ghost" id="prSpeak">▶ Dengar</button>
-          <button class="btn ghost" id="prMic">Coba ucapkan</button>
+          <button class="btn ghost" id="prMic">🎤 Coba ucapkan</button>
           <button class="btn" id="prKnow">Sudah lancar</button>
         </div>
         <p class="mic-fb" id="prMicFb"></p>
@@ -588,24 +556,23 @@ input[type=text]::placeholder{color:var(--muted)}
 </div>
 
 <nav class="tabbar">
-  <a class="tab" data-nav="beranda" href="#/beranda">Beranda</a>
-  <a class="tab" data-nav="kosakata" href="#/kosakata">Kartu</a>
-  <a class="tab" data-nav="aikata" href="#/aikata">AI</a>
-  <a class="tab" data-nav="tatabahasa" href="#/tatabahasa">Tata bhs</a>
-  <a class="tab" data-nav="percakapan" href="#/percakapan">Frasa</a>
-  <a class="tab" data-nav="kuis" href="#/kuis">Kuis</a>
-  <a class="tab" data-nav="cocokkan" href="#/cocokkan">Cocok</a>
-  <a class="tab" data-nav="kalimat" href="#/kalimat">Kalimat</a>
-  <a class="tab" data-nav="membaca" href="#/membaca">Baca</a>
-  <a class="tab" data-nav="dengar" href="#/dengar">Dengar</a>
-  <a class="tab" data-nav="progres" href="#/progres">Progres</a>
+  <a class="tab" data-nav="beranda" href="#/beranda"><em>⌂</em>Beranda</a>
+  <a class="tab" data-nav="kosakata" href="#/kosakata"><em>▤</em>Kartu</a>
+  <a class="tab" data-nav="tatabahasa" href="#/tatabahasa"><em>✎</em>Tata bhs</a>
+  <a class="tab" data-nav="percakapan" href="#/percakapan"><em>💬</em>Frasa</a>
+  <a class="tab" data-nav="kuis" href="#/kuis"><em>◎</em>Kuis</a>
+  <a class="tab" data-nav="cocokkan" href="#/cocokkan"><em>⇌</em>Cocok</a>
+  <a class="tab" data-nav="kalimat" href="#/kalimat"><em>⇄</em>Kalimat</a>
+  <a class="tab" data-nav="membaca" href="#/membaca"><em>📖</em>Baca</a>
+  <a class="tab" data-nav="dengar" href="#/dengar"><em>♪</em>Dengar</a>
+  <a class="tab" data-nav="progres" href="#/progres"><em>◔</em>Progres</a>
 </nav>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 /* ===================== DATA ===================== */
-let VOCAB = [
+const VOCAB = [
   {w:"resilient", ipa:"/rɪˈzɪliənt/", pos:"kata sifat", m:"tangguh; cepat pulih setelah kesulitan", ex:"She is resilient — she bounced back within a week."},
   {w:"commute", ipa:"/kəˈmjuːt/", pos:"kata kerja", m:"pergi-pulang kerja setiap hari", ex:"I commute by train every morning."},
   {w:"deadline", ipa:"/ˈdedlaɪn/", pos:"kata benda", m:"batas waktu penyelesaian", ex:"The deadline is Friday at noon."},
@@ -649,10 +616,6 @@ const LISTEN = [
   "Please remember to bring your umbrella today.",
   "They will arrive at the airport in an hour."
 ];
-try{
-  const extraVocab = JSON.parse(localStorage.getItem("affan.aivocab")||"[]");
-  extraVocab.forEach(v=>{ if(v && v.w && !VOCAB.some(x=>x.w.toLowerCase()===v.w.toLowerCase())) VOCAB.push(v); });
-}catch(e){}
 const GRAMMAR = [
   {q:"I ___ coffee every morning.", opts:["drink","drinks","drinking","drank"], a:0, note:"Present simple: subjek I/you/we/they memakai kata kerja dasar (V1)."},
   {q:"She ___ to the gym twice a week.", opts:["go","goes","going","went"], a:1, note:"Subjek orang ketiga tunggal (she/he/it) → kata kerja ditambah -s/-es."},
@@ -692,15 +655,15 @@ const READING = [
         {q:"Why does Dimas feel welcome?", opts:["The coffee is free","The owner remembers his order","The cafe is very big"], a:1}]}
 ];
 const BADGES = [
-  {id:"first5", lb:"5 kata hafal", test:p=>p.learned.length>=5 || p.totalLearned>=5},
-  {id:"quizacc", lb:"Akurasi 80%+", test:p=>p.qTotal>=6 && (p.qRight/p.qTotal)>=0.8},
-  {id:"streak3", lb:"3 hari beruntun", test:p=>p.streak>=3},
-  {id:"match60", lb:"Cocokkan di bawah 1 menit", test:p=>p.bestMatch!=null && p.bestMatch<=60},
-  {id:"goal", lb:"Target harian tercapai", test:p=>p.xp>=60},
-  {id:"grammarpro", lb:"5 soal tata bahasa benar", test:p=>p.cTat>=5},
-  {id:"chatty", lb:"5 frasa dikuasai", test:p=>p.cPer>=5},
-  {id:"reader", lb:"3 teks bacaan selesai", test:p=>p.cBac>=3},
-  {id:"allround", lb:"Coba semua latihan", test:p=>p.cKos>0&&p.cKui>0&&p.cKal>0&&p.cDen>0&&p.cCok>0&&p.cTat>0&&p.cPer>0&&p.cBac>0}
+  {id:"first5", ic:"🌱", lb:"5 kata hafal", test:p=>p.learned.length>=5 || p.totalLearned>=5},
+  {id:"quizacc", ic:"🎯", lb:"Akurasi 80%+", test:p=>p.qTotal>=6 && (p.qRight/p.qTotal)>=0.8},
+  {id:"streak3", ic:"🔥", lb:"3 hari beruntun", test:p=>p.streak>=3},
+  {id:"match60", ic:"⚡", lb:"Cocokkan di bawah 1 menit", test:p=>p.bestMatch!=null && p.bestMatch<=60},
+  {id:"goal", ic:"🏆", lb:"Target harian tercapai", test:p=>p.xp>=60},
+  {id:"grammarpro", ic:"📘", lb:"5 soal tata bahasa benar", test:p=>p.cTat>=5},
+  {id:"chatty", ic:"💬", lb:"5 frasa dikuasai", test:p=>p.cPer>=5},
+  {id:"reader", ic:"📖", lb:"3 teks bacaan selesai", test:p=>p.cBac>=3},
+  {id:"allround", ic:"🧩", lb:"Coba semua latihan", test:p=>p.cKos>0&&p.cKui>0&&p.cKal>0&&p.cDen>0&&p.cCok>0&&p.cTat>0&&p.cPer>0&&p.cBac>0}
 ];
 
 /* ===================== UTIL ===================== */
@@ -740,6 +703,7 @@ const sndGood = ()=>{ tone(660,.12); setTimeout(()=>tone(880,.16),90); };
 const sndBad = ()=>{ tone(220,.22,"sawtooth"); };
 const sndTap = ()=>tone(520,.05);
 function refreshSoundBtn(){
+  $("soundBtn").textContent = soundOn ? "♪" : "🔇";
   $("soundBtn").classList.toggle("off", !soundOn);
 }
 $("soundBtn").addEventListener("click",()=>{
@@ -792,14 +756,14 @@ function load(){
   }
 }
 function save(){ try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){} render(); checkBadges(); }
-function addXp(n,why,el){ P.xp+=n; save(); if(el) xpFly(n,el); if(why) toast(why); if(P.xp>=60 && P.xp-n<60){ confettiBurst(); toast("Target harian 60 poin tercapai!"); } }
+function addXp(n,why,el){ P.xp+=n; save(); if(el) xpFly(n,el); if(why) toast(why); if(P.xp>=60 && P.xp-n<60){ confettiBurst(); toast("Target harian 60 poin tercapai! 🎉"); } }
 function checkBadges(){
   BADGES.forEach(b=>{
     if(!P.badges.includes(b.id) && b.test(P)){
       P.badges.push(b.id);
       try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){}
       renderBadges();
-      toast("Lencana baru terbuka: "+b.lb);
+      toast("Lencana baru terbuka: "+b.ic+" "+b.lb);
       confettiBurst();
     }
   });
@@ -810,7 +774,7 @@ function renderBadges(){
     const on=P.badges.includes(b.id);
     const d=document.createElement("div");
     d.className="badge"+(on?" on":"");
-    d.innerHTML='<span class="lb">'+b.lb+'</span>';
+    d.innerHTML='<span class="ic">'+b.ic+'</span><span class="lb">'+b.lb+'</span>';
     shelf.appendChild(d);
   });
 }
@@ -831,7 +795,7 @@ function render(){
 }
 
 /* ===================== ROUTER ===================== */
-const PAGES=["beranda","kosakata","aikata","tatabahasa","percakapan","kuis","cocokkan","kalimat","membaca","dengar","progres"];
+const PAGES=["beranda","kosakata","tatabahasa","percakapan","kuis","cocokkan","kalimat","membaca","dengar","progres"];
 function route(){
   let name=(location.hash.replace("#/","")||"beranda");
   if(!PAGES.includes(name)) name="beranda";
@@ -923,7 +887,7 @@ if(!SR){ micBtn.disabled=true; micBtn.title="Pengenalan suara tidak tersedia di 
 micBtn.addEventListener("click",()=>{
   if(!SR) return;
   const rec=new SR(); rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=3;
-  micBtn.classList.add("listening"); micBtn.textContent="Mendengarkan…";
+  micBtn.classList.add("listening"); micBtn.textContent="🎙 Mendengarkan…";
   const fb=$("fcMicFb"); fb.textContent="Ucapkan sekarang…"; fb.className="mic-fb";
   rec.start();
   rec.onresult=(e)=>{
@@ -938,78 +902,8 @@ micBtn.addEventListener("click",()=>{
     }
   };
   rec.onerror=()=>{ fb.textContent="Mikrofon tidak dapat diakses."; fb.className="mic-fb bad"; };
-  rec.onend=()=>{ micBtn.classList.remove("listening"); micBtn.textContent="Coba ucapkan"; };
+  rec.onend=()=>{ micBtn.classList.remove("listening"); micBtn.textContent="🎤 Coba ucapkan"; };
 });
-
-/* ===================== AI KOSAKATA ===================== */
-let aiResults = [];
-function escHtml(s){ return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
-function aiCardHtml(v,i){
-  return '<div class="aicard" data-i="'+i+'">'+
-    '<div class="aicard-top"><div><h4>'+escHtml(v.w)+'</h4>'+
-    '<p class="ipa" style="margin:0">'+escHtml(v.ipa)+(v.ipa?" · ":"")+escHtml(v.pos)+'</p></div>'+
-    '<button class="btn ghost" data-add="'+i+'" style="flex:none">+ Tambah</button></div>'+
-    '<p class="m" style="margin:8px 0 4px">'+escHtml(v.m)+'</p>'+
-    '<p class="ex" style="color:var(--muted)">'+escHtml(v.ex)+'</p></div>';
-}
-function renderAiList(){
-  $("aiList").innerHTML = aiResults.map(aiCardHtml).join("");
-  $("aiActions").style.display = aiResults.length ? "flex" : "none";
-  $("aiList").querySelectorAll("[data-add]").forEach(b=>{
-    b.addEventListener("click",()=>addAiWord(parseInt(b.dataset.add,10), b));
-  });
-}
-function addAiWord(i, btn){
-  const v = aiResults[i];
-  if(!v) return;
-  if(VOCAB.some(x=>x.w.toLowerCase()===v.w.toLowerCase())){
-    toast("“"+v.w+"” sudah ada di kartu kosakata.");
-    if(btn){ btn.textContent="Sudah ada"; btn.disabled=true; }
-    return;
-  }
-  VOCAB.push(v);
-  try{
-    const extra=JSON.parse(localStorage.getItem("affan.aivocab")||"[]");
-    extra.push(v); localStorage.setItem("affan.aivocab",JSON.stringify(extra));
-  }catch(e){}
-  if(btn){ btn.textContent="Ditambahkan"; btn.disabled=true; btn.closest(".aicard").classList.add("added"); }
-  drawCard();
-  sndGood(); addXp(2,"“"+v.w+"” ditambahkan ke kartu kosakata.",btn||$("aiGen"));
-}
-$("aiAddAll").addEventListener("click",()=>{
-  let n=0;
-  aiResults.forEach((v,i)=>{ if(!VOCAB.some(x=>x.w.toLowerCase()===v.w.toLowerCase())){ addAiWord(i,null); n++; } });
-  renderAiList();
-  toast(n?("Menambahkan "+n+" kata baru ke kartu kosakata."):"Semua kata sudah ada di kartu kosakata.");
-});
-$("aiGen").addEventListener("click", async ()=>{
-  const topic = $("aiTopic").value.trim() || "kehidupan sehari-hari";
-  $("aiGen").disabled=true; $("aiStatus").textContent="AI sedang menyiapkan kosakata untuk “"+topic+"”…";
-  $("aiList").innerHTML=""; $("aiActions").style.display="none";
-  try{
-    const existing = VOCAB.map(v=>v.w).join(", ");
-    const res = await fetch("/api/generate-vocab", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ topic, existing })
-    });
-    const data = await res.json();
-    if(!res.ok) throw new Error(data && data.error ? data.error : "http "+res.status);
-    const list = Array.isArray(data) ? data : (Array.isArray(data && data.items) ? data.items : []);
-    aiResults = list.filter(v=>v && v.w && v.m && v.ex).map(v=>({
-      w:String(v.w).trim(), ipa:String(v.ipa||"").trim(), pos:String(v.pos||"kata benda").trim(),
-      m:String(v.m).trim(), ex:String(v.ex).trim()
-    }));
-    $("aiStatus").textContent = aiResults.length
-      ? ("AI membuat "+aiResults.length+" kata baru untuk topik \""+topic+"\". Ketuk “+ Tambah” untuk memasukkannya ke kartu kosakata.")
-      : "AI tidak memberi hasil yang bisa dipakai, coba topik lain.";
-    renderAiList();
-  }catch(e){
-    $("aiStatus").textContent="Gagal membuat kosakata sekarang. Coba lagi sebentar lagi.";
-  }
-  $("aiGen").disabled=false;
-});
-$("aiTopic").addEventListener("keydown",e=>{ if(e.key==="Enter") $("aiGen").click(); });
 
 /* ===================== KUIS ===================== */
 let qSet=[],qPos=0,qStreak=0,locked=false;
@@ -1159,7 +1053,7 @@ if(!SR){ prMicBtn.disabled=true; prMicBtn.title="Pengenalan suara tidak tersedia
 prMicBtn.addEventListener("click",()=>{
   if(!SR) return;
   const rec=new SR(); rec.lang="en-US"; rec.interimResults=false; rec.maxAlternatives=3;
-  prMicBtn.classList.add("listening"); prMicBtn.textContent="Mendengarkan…";
+  prMicBtn.classList.add("listening"); prMicBtn.textContent="🎙 Mendengarkan…";
   const fb=$("prMicFb"); fb.textContent="Ucapkan sekarang…"; fb.className="mic-fb";
   rec.start();
   rec.onresult=(e)=>{
@@ -1173,7 +1067,7 @@ prMicBtn.addEventListener("click",()=>{
     }
   };
   rec.onerror=()=>{ fb.textContent="Mikrofon tidak dapat diakses."; fb.className="mic-fb bad"; };
-  rec.onend=()=>{ prMicBtn.classList.remove("listening"); prMicBtn.textContent="Coba ucapkan"; };
+  rec.onend=()=>{ prMicBtn.classList.remove("listening"); prMicBtn.textContent="🎤 Coba ucapkan"; };
 });
 
 /* ===================== MEMBACA ===================== */
